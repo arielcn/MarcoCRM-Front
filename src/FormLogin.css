@@ -1,0 +1,104 @@
+body {
+    background-color: #3A3132;
+}
+
+h1 {
+    font-size: 48px;
+    text-align: left;
+    color: #fff;
+}
+
+p {
+    color: #fff;
+    margin-top: 79px;
+    font-size: 16px;
+}
+
+/* unvisited link */
+a:link {
+    color: red;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: green;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: hotpink;
+  }
+  
+  /* selected link */
+  a:active {
+    color: blue;
+  }
+
+.app {
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    font-size: 20px;
+    height: 59px;
+    width: 351px;
+    opacity: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  
+  input[type="submit"] {
+    margin-top: 10px;
+    height: 71px;
+    width: 351px;
+    cursor: pointer;
+    font-size: 20px;
+    background: #386DBD;
+    border: 1px solid #386DBD;
+    border-radius: 10px;
+    color: #fff;
+    padding: 10px 20px;
+  }
+  
+  input[type="submit"]:hover {
+    background: #3d82eb;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-form {
+    margin-top: 5%;
+    padding: 2rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .list-container {
+    display: flex;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .title {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+  }
