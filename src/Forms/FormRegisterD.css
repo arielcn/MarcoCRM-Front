@@ -1,0 +1,8 @@
+body {
+    background-color: #3A3132;
+}
+
+.button-container {
+    display: block;
+    justify-content: center;
+}

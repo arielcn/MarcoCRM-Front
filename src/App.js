@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import FormLogin from './FormLogin';
-import ElegirUser from './ElegirUser';
+import FormLogin from './Forms/FormLogin';
+import ElegirUser from './Forms/ElegirUser';
+import FormRegisterD from './Forms/FormRegisterD';
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <body>
-        <FormLogin></FormLogin>
+        <FormRegisterD></FormRegisterD>
       </body>
     </div>
   );

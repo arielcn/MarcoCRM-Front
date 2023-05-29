@@ -1,0 +1,28 @@
+body {
+    background-color: #3A3132;
+}
+
+h1 {
+    font-size: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+button {
+    font-family: sans-serif;
+    font-size: 48px;
+    color: #ffffff;
+    text-align: center;
+    width: 433px;
+    height: 130px;
+    border-radius: 12px;
+}
+
+.btn1 {
+    background-color: #0F4571;
+}
+
+.btn2 {
+    margin-top: 40px;
+    background-color: #2DAAE1;
+}
