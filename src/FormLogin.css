@@ -1,5 +1,5 @@
 body {
-    background-color: #3A3132;
+  background-color: #3A3132;
 }
 
 h1 {
@@ -21,7 +21,7 @@ a:link {
   
   /* visited link */
   a:visited {
-    color: green;
+    color: rgb(26, 155, 106);
   }
   
   /* mouse over link */

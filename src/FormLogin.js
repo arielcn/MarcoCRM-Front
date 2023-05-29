@@ -77,13 +77,11 @@ const FormLogin = (props) => {
     );
 
     return (
-        <body>
-            <div className="app">
-                <div className="login-form">
-                    {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-                </div>
+        <div className="app">
+            <div className="login-form">
+                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
             </div>
-        </body>
+        </div>
     );
 }
 
