@@ -3,6 +3,8 @@ import './App.css';
 import FormLogin from './Forms/FormLogin';
 import ElegirUser from './Forms/ElegirUser';
 import FormRegisterD from './Forms/FormRegisterD';
+import FormRegisterV from './Forms/FormRegisterV';
+import CodigoEmpresa from './Forms/CodigoEmpresa';
 
 function App() {
   return (
@@ -11,7 +13,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <body>
-        <FormRegisterD></FormRegisterD>
+        <FormLogin></FormLogin>
       </body>
     </div>
   );
