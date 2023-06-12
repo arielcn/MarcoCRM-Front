@@ -13,7 +13,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <body>
-        <FormLogin></FormLogin>
+        <FormRegisterV></FormRegisterV>
       </body>
     </div>
   );

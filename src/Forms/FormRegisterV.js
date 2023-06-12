@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FormRegisterV.css";
+import axios from 'axios';
 
 const FormRegisterV = (props) => {
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [datos, setDatos] = useState([]);
 
     const handleSubmit = (event) => {
         //Prevent page reload
         event.preventDefault();
     }
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/')
+          .then((response) => {    
+            setDatos(response.data); //no se si está bien asi
+          });
+      });
 
     return (
         <div className="container">
