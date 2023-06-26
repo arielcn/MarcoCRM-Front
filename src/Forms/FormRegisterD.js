@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
-//import "./FormRegisterD.css";
 
 const FormRegisterD = (props) => {
     const [datos, setDatos] = useState([]);

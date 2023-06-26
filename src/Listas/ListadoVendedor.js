@@ -1,9 +1,10 @@
-import './ListadoCliente.css'
+import './ListadoVendedor.css'
 
-const ListadoCliente = () => {
+const ListadoVendedor = () => {
     return (
         <div className='container'>
             <div class="row">
+                <h1 className='center'>Listado de vendedores</h1>
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Flecharda Snieg</a>
@@ -23,18 +24,38 @@ const ListadoCliente = () => {
                 <div class="col-4">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">
-                            <ul class="list-group">
-                                <li class="list-group-item">Nombre Apellido/s</li>
-                                <li class="list-group-item">Mail</li>
-                                <li class="list-group-item">Numero</li>
-                            </ul>
+                            <div class="card">
+                                <img src="https://images.ctfassets.net/u4vv676b8z52/6yvNBy6OqQPZCCylbhGOL8/f85f456516fd783f37c2eff6e53aee4d/eyeglasses_mens_glasses_trends.jpg?fm=jpg&q=80" class="card-img-fluid-top"></img>
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre</h5>
+                                    <p class="card-text">Cantidad de ventas:</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Email</li>
+                                    <li class="list-group-item">CUIT</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="#" class="card-link">Card link</a>
+                                    <a href="#" class="card-link">Another link</a>
+                                </div>
+                            </div>
                         </div>
                         <div class="tab-pane fade" id="list-ari" role="tabpanel" aria-labelledby="list-ari-list">
-                            <ul class="list-group">
-                                <li class="list-group-item">Ariel Dan Cohen</li>
-                                <li class="list-group-item">ari@ari.ari.com</li>
-                                <li class="list-group-item">1212321</li>
-                            </ul>
+                            <div class="card">
+                                <img src="https://img.freepik.com/foto-gratis/apuesto-hombre-empresario-sonriendo-alegre_176420-17877.jpg" class="card-img-top"></img>
+                                <div class="card-body">
+                                    <h5 class="card-title">Nombre</h5>
+                                    <p class="card-text">Cantidad de ventas:</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Email</li>
+                                    <li class="list-group-item">CUIT</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="#" class="card-link">Card link</a>
+                                    <a href="#" class="card-link">Another link</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -43,4 +64,4 @@ const ListadoCliente = () => {
     );
 };
 
-export default ListadoCliente;
+export default ListadoVendedor;

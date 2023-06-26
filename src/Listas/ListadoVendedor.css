@@ -1,0 +1,22 @@
+.row{
+    margin-top: 5%;
+}
+
+.card-img-fluid-top{
+    width: auto;
+    height: fit-content;
+}
+
+a:link {
+    color: rgb(0, 0, 0);
+}
+
+/* mouse over link */
+a:hover {
+    color: rgb(62, 196, 36);
+}
+
+/* selected link */
+a:active {
+    color: blue;
+}
