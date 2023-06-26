@@ -71,7 +71,7 @@ const FormLogin = (props) => {
                 <div className="button-container">
                     <input type="submit" value={"Iniciar Sesion"} />
                 </div>
-                <p>No tienes cuenta? <a href="">Registrate</a></p>
+                <p className="subtitle">No tienes cuenta? <a href="">Registrate</a></p>
             </form>
         </div>
     );

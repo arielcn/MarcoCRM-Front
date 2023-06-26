@@ -1,15 +1,23 @@
-import React, { useState } from "react";
-import "./FormRegisterD.css";
+import React, { useState,useEffect } from "react";
+import axios from "axios";
+//import "./FormRegisterD.css";
 
 const FormRegisterD = (props) => {
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [datos, setDatos] = useState([]);
 
     const handleSubmit = (event) => {
         //Prevent page reload
         event.preventDefault();
     }
 
-    const renderForm = (
+    useEffect(() => {
+        axios.get('http://localhost:3001/')
+          .then((response) => {    
+            setDatos(response.data); //no se si está bien asi
+          });
+      });
+
+    return (
         <div className="form">
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Nombre" />
@@ -25,14 +33,6 @@ const FormRegisterD = (props) => {
                     <p>¿Ya tienes cuenta? <a href="">Iniciar Sesión</a></p>
                 </div>
             </form>
-        </div>
-    );
-
-    return (
-        <div className="app">
-            <div className="login-form">
-                {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-            </div>
         </div>
     );
 }
