@@ -16,7 +16,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <body>
-        <CargarDatosC></CargarDatosC>
+        <ListadoCliente></ListadoCliente>
       </body>
     </div>
   );

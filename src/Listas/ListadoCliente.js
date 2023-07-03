@@ -3,17 +3,18 @@ import axios from 'axios';
 import './ListadoCliente.css'
 
 const ListadoCliente = (props) => {
-    const [datos, setDatos] = useState([]);
+/*    const [datos, setDatos] = useState([]);
 
 useEffect(() => {
     axios.get('http://localhost:3001/')
       .then((response) => {    
-        setDatos(response.data); //no se si está bien asi
+        setDatos(response.data);
       });
-  });
+  });*/
+
     return (
         <div className='container'>
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Flecharda Snieg</a>
@@ -49,6 +50,7 @@ useEffect(() => {
                     </div>
                 </div>
             </div>
+            <button className="btn btn-secondary" type="submit">Cargar Cliente</button>
         </div>
     );
 };
