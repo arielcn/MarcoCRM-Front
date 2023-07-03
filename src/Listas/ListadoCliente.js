@@ -2,49 +2,35 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ListadoCliente.css'
 
-const ListadoCliente = (props) => {
-/*    const [datos, setDatos] = useState([]);
+const ListadoCliente = () => {
+    const [clientes, setClientes] = useState([]);
 
-useEffect(() => {
-    axios.get('http://localhost:3001/')
-      .then((response) => {    
-        setDatos(response.data);
-      });
-  });*/
+    useEffect(() => {
+        axios.get('http://localhost:3001/clientes')
+            .then((response) => {
+                console.log(response)
+                const clientes = response.data;
+                setClientes(clientes);
+                console.log(clientes)
+            });
+    });
 
+    //{clientes.map(cliente => <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{cliente.Nombre} {cliente.Apellido}</a>)}
     return (
         <div className='container'>
             <div class="row mb-3">
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Flecharda Snieg</a>
-                        <a class="list-group-item list-group-item-primary" id="list-ari-list" data-bs-toggle="list" href="#list-ari" role="tab" aria-controls="list-ari">Ariel Dan Cohen</a>
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Martin Perez</a>
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Flecharda Snieg</a>
-                        <a class="list-group-item list-group-item-primary" id="list-ari-list" data-bs-toggle="list" href="#list-ari" role="tab" aria-controls="list-ari">Ariel Dan Cohen</a>
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Martin Perez</a>
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Flecharda Snieg</a>
-                        <a class="list-group-item list-group-item-primary" id="list-ari-list" data-bs-toggle="list" href="#list-ari" role="tab" aria-controls="list-ari">Ariel Dan Cohen</a>
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Martin Perez</a>
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Flecharda Snieg</a>
-                        <a class="list-group-item list-group-item-primary" id="list-ari-list" data-bs-toggle="list" href="#list-ari" role="tab" aria-controls="list-ari">Ariel Dan Cohen</a>
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">Martin Perez</a>
+                    <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{clientes.Nombre} {clientes.Apellido}</a>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">
                             <ul class="list-group">
-                                <li class="list-group-item">Nombre Apellido/s</li>
-                                <li class="list-group-item">Mail</li>
-                                <li class="list-group-item">Numero</li>
-                            </ul>
-                        </div>
-                        <div class="tab-pane fade" id="list-ari" role="tabpanel" aria-labelledby="list-ari-list">
-                            <ul class="list-group">
-                                <li class="list-group-item">Ariel Dan Cohen</li>
-                                <li class="list-group-item">ari@ari.ari.com</li>
-                                <li class="list-group-item">1212321</li>
+                                <li class="list-group-item">{clientes.Nombre} {clientes.Apellido}</li>
+                                <li class="list-group-item">{clientes.Mail}</li>
+                                <li class="list-group-item">{clientes.Telefono}</li>
                             </ul>
                         </div>
                     </div>
