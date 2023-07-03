@@ -1,6 +1,16 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import './ListadoCliente.css'
 
-const ListadoCliente = () => {
+const ListadoCliente = (props) => {
+    const [datos, setDatos] = useState([]);
+
+useEffect(() => {
+    axios.get('http://localhost:3001/')
+      .then((response) => {    
+        setDatos(response.data); //no se si está bien asi
+      });
+  });
     return (
         <div className='container'>
             <div class="row">

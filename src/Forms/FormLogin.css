@@ -44,8 +44,8 @@ a:link {
     height: 100%;
   }
   
-  input[type="text"],
-  input[type="password"] {
+  .usuarioLogin[type="text"],
+  .usuarioLogin[type="password"] {
     font-size: 20px;
     height: 59px;
     width: 351px;
@@ -54,7 +54,7 @@ a:link {
     border-radius: 10px;
   }
   
-  input[type="submit"] {
+  .usuarioLogin[type="submit"] {
     margin-top: 10px;
     height: 71px;
     width: 351px;
@@ -67,7 +67,7 @@ a:link {
     padding: 10px 20px;
   }
   
-  input[type="submit"]:hover {
+  .usuarioLogin[type="submit"]:hover {
     background: #3d82eb;
   }
   

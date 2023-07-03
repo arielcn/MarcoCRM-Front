@@ -7,6 +7,7 @@ import FormRegisterV from './Forms/FormRegisterV';
 import CodigoEmpresa from './Forms/CodigoEmpresa';
 import ListadoCliente from './Listas/ListadoCliente';
 import ListadoVendedor from './Listas/ListadoVendedor';
+import CargarDatosC from './Listas/CargarDatosC';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <body>
-        <ListadoVendedor></ListadoVendedor>
+        <CargarDatosC></CargarDatosC>
       </body>
     </div>
   );

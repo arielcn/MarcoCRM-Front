@@ -59,12 +59,12 @@ const FormLogin = (props) => {
             <h1>¡Hola!👋</h1>
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
-                    <input type="text" name="uname" placeholder="Usuario o Email" required />
+                    <input className="usuarioLogin" type="text" name="uname" placeholder="Usuario o Email" required />
                     {renderErrorMessage("uname")}
                 </div>
                 <div className="input-container">
-                    <input type={showPassword ? "text" : "password"} name="pass" placeholder="Contraseña" required />
-                    <input type="checkbox" onClick={() => setShowPassword(!showPassword)} />
+                    <input className="usuarioLogin" type={showPassword ? "text" : "password"} name="pass" placeholder="Contraseña" required />
+                    <input className="usuarioLogin"type="checkbox" onClick={() => setShowPassword(!showPassword)} />
                     {renderErrorMessage("pass")}
                 </div>
                 <a href="">Olvide mi Contraseña</a>
