@@ -56,7 +56,7 @@ const FormLogin = (props) => {
     // JSX code for login form
     const renderForm = (
         <div className="form">
-            <h1>¡Hola!👋</h1>
+            <h1 className="h1-login">¡Hola!👋</h1>
             <form onSubmit={handleSubmit}>
                 <div className="input-container">
                     <input className="usuarioLogin" type="text" name="uname" placeholder="Usuario o Email" required />
