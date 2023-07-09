@@ -11,12 +11,12 @@ import CargarDatosC from './Listas/CargarDatosC';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <body>
-        <FormRegisterD></FormRegisterD>
+        <FormLogin></FormLogin>
       </body>
     </div>
   );

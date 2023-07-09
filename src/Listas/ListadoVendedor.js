@@ -19,7 +19,7 @@ const ListadoVendedor = () => {
 
     return (
         <div className='container'>
-            <div class="row">
+            <div class="row mt-3">
                 <h1 className='center'>Listado de vendedores</h1>
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">

@@ -2,18 +2,6 @@ body {
   background-color: #3A3132;
 }
 
-.h1-login {
-    font-size: 48px;
-    text-align: left;
-    color: #fff;
-}
-
-.subtitle {
-    color: #fff;
-    margin-top: 79px;
-    font-size: 16px;
-}
-
 /* unvisited link */
 a:link {
     color: red;
@@ -39,41 +27,8 @@ a:link {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     gap: 20px;
     height: 100%;
-  }
-  
-  .usuarioLogin[type="text"],
-  .usuarioLogin[type="password"] {
-    font-size: 20px;
-    height: 59px;
-    width: 351px;
-    opacity: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-  }
-  
-  .usuarioLogin[type="submit"] {
-    margin-top: 10px;
-    height: 71px;
-    width: 351px;
-    cursor: pointer;
-    font-size: 20px;
-    background: #386DBD;
-    border: 1px solid #386DBD;
-    border-radius: 10px;
-    color: #fff;
-    padding: 10px 20px;
-  }
-  
-  .usuarioLogin[type="submit"]:hover {
-    background: #3d82eb;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center;
   }
   
   .login-form {
@@ -82,23 +37,17 @@ a:link {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   
-  .list-container {
-    display: flex;
-  }
-  
   .error {
     color: red;
     font-size: 12px;
   }
-  
-  .title {
-    font-size: 25px;
-    margin-bottom: 20px;
-  }
-  
-  .input-container {
+
+  .inputPass {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .inputPassText {
+    width: 80%;
   }

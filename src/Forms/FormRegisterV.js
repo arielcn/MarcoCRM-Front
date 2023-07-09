@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import axios from 'axios';
-//import "./FormRegisterV.css";
 
 const FormRegisterV = (props) => {
     const [nombre, setNombre] = useState("");
@@ -19,13 +22,43 @@ const FormRegisterV = (props) => {
         };
 
         axios.post("http://localhost:3001/usuario", datos)
-        .then((response) => {
-            console.log(response.status, response.data.token);
-        });
+            .then((response) => {
+                console.log(response.status, response.data.token);
+            });
     }
 
     return (
         <div className="container">
+            <Form onSubmit={handleSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Label className="fs-4 text-white"><b>Nombre</b></Form.Label>
+                        <Form.Control type="text" placeholder="Nombre" value={datos.nombre} onChange={(e => setNombre(e.target.value))} />
+                    </Form.Group>
+
+                    <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Label className="fs-4 text-white"><b>Apellido</b></Form.Label>
+                        <Form.Control type="text" placeholder="Apellido" value={datos.apellido} onChange={(e => setApellido(e.target.value))}/>
+                    </Form.Group>
+                </Row>
+
+                <Form.Group className="mb-3" controlId="formGridAddress1">
+                    <Form.Label className="fs-4 text-white"><b>Email</b></Form.Label>
+                    <Form.Control type="email" placeholder="Tu E-Mail" value={datos.mail} onChange={(e => setMail(e.target.value))} />
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="formGridAddress2">
+                    <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
+                    <Form.Control type="password" placeholder="Contraseña" value={datos.contraseña} onChange={(e => setContraseña(e.target.value))}/>
+                    <p className="text-white">Mínimo 8 caracteres</p>
+                </Form.Group>
+
+                <Button variant="primary" size="lg" type="submit">
+                    Registrarse
+                </Button>
+            </Form>
+        </div>
+        /*<div className="container">
             <form className="register-form" onSubmit={handleSubmit}>
                 <input type="text" value={datos.nombre} placeholder="Nombre" onChange={(e => setNombre(e.target.value))}/>
                 <input type="text" value={datos.apellido} placeholder="Apellido" onChange={(e => setApellido(e.target.value))}/>
@@ -37,7 +70,7 @@ const FormRegisterV = (props) => {
                     <p>¿Ya tienes cuenta? <a href="">Iniciar Sesión</a></p>
                 </div>
             </form>
-        </div>
+        </div>*/
     );
 }
 
