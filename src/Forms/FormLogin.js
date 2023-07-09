@@ -62,7 +62,7 @@ const FormLogin = (props) => {
                     <Form.Control type="email" name="email" placeholder="Ingresar email" required />
                     {renderErrorMessage("email")}
                 </Form.Group>
-                <Form.Group className="mb-3 text-white" controlId="formGroupPassword">
+                <Form.Group className="mb-5 text-white" controlId="formGroupPassword">
                     <Form.Label>Password</Form.Label>
                     <div className="inputPass">
                         <Form.Control className="inputPassText" type="password" type={showPassword ? "text" : "password"} name="pass" placeholder="Contraseña" required />

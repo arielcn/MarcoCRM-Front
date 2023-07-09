@@ -10,10 +10,11 @@ import ListadoVendedor from './Listas/ListadoVendedor';
 import CargarDatosC from './Listas/CargarDatosC';
 
 function App() {
+//  <img src={logo} className="App-logo" alt="logo" />
   return (
-    <div>
+    <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src="logo.png" className="App-logo" alt="logo" />
       </header>
       <body>
         <FormLogin></FormLogin>
