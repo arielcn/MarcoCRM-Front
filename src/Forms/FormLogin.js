@@ -1,80 +1,58 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./FormLogin.css";
 import { Form, Button, Container } from "react-bootstrap";
 
-const FormLogin = (props) => {
+const FormLogin = () => {
     // React States
-    const [errorMessages, setErrorMessages] = useState({});
-    const [isSubmitted, setIsSubmitted] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [error, setError] = useState('');
     const [mail, setMail] = useState("");
-    const [contraseña, setContraseña] = useState("");
+    const [pwd, setPwd] = useState("");
 
     // User Login info
-    const database = [
-        {
-            mail: "user1@a",
-            contraseña: "pass1"
-        }
-    ];
 
-    const errors = {
-        email: "invalid email",
-        pass: "invalid password"
-    };
 
     const handleSubmit = (event) => {
         //Prevent page reload
         event.preventDefault();
 
-        var { email, pass } = document.forms[0];
+        let usuario = {
+            mail: mail,
+            pass: pwd
+        };
 
-        // Find user login info
-        const userData = database.find((user) => user.mail === email.value);
-
-        // Compare user info
-        if (userData) {
-            if (userData.contraseña !== pass.value) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.pass });
-            } else {
-                setIsSubmitted(true);
-            }
-        } else {
-            // Username not found
-            setErrorMessages({ name: "email", message: errors.email });
-        }
-    };
-
-    // Generate JSX code for error message
-    const renderErrorMessage = (name) =>
-        name === errorMessages.name && (
-            <div className="error">{errorMessages.message}</div>
-        );
+        axios.post('http://localhost:3001/usuario/login', usuario)
+        .then(res =>{
+            console.log(res);
+            setError('');
+        })
+        .catch(res => {
+            setError("Credenciales Incorrectas");
+        });
+    }
 
     // JSX code for login form
-    const renderForm = (
+    /*const renderForm = (
         <Container>
             <Form onSubmit={handleSubmit}>
                 <h1 className="fs-1 text-white fw-bold mb-4">¡Hola!👋</h1>
                 <Form.Group className="mb-3 text-white" controlId="formGroupEmail">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control type="email" name="email" placeholder="Ingresar email" required />
-                    {renderErrorMessage("email")}
+                    <Form.Control type="email" placeholder="Ingresar email" required value={mail} onChange={(e => setMail(e.target.value))}/>
                 </Form.Group>
                 <Form.Group className="mb-5 text-white" controlId="formGroupPassword">
                     <Form.Label>Password</Form.Label>
                     <div className="inputPass">
-                        <Form.Control className="inputPassText" type="password" type={showPassword ? "text" : "password"} name="pass" placeholder="Contraseña" required />
+                        <Form.Control className="inputPassText" type={showPassword ? "text" : "password"} placeholder="Contraseña" required value={pwd} onChange={(e => setPwd(e.target.value))}/>
                         <Form.Check type="checkbox" onClick={() => setShowPassword(!showPassword)} />
-                        {renderErrorMessage("pass")}
                     </div>
                     <a href="">Olvide mi Contraseña</a>
                 </Form.Group>
                 <Button variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
             </Form>
         </Container>
-        /* <div className="form">
+         <div className="form">
              <h1 className="h1-login">¡Hola!👋</h1>
              <form onSubmit={handleSubmit}>
                  <div className="input-container">
@@ -92,13 +70,29 @@ const FormLogin = (props) => {
                  </div>
                  <p className="subtitle mt-5">No tienes cuenta? <a href="">Registrate</a></p>
              </form>
-         </div>*/
-    );
+         </div>
+    );*/
 
     return (
         <div className="app">
             <div className="login-form">
-                {isSubmitted ? <div color="white">User is successfully logged in</div> : renderForm}
+            <Form onSubmit={handleSubmit}>
+                <h1 className="fs-1 text-white fw-bold mb-4">¡Hola!👋</h1>
+                <Form.Group className="mb-3 text-white" controlId="formGroupEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" placeholder="Ingresar email" required value={mail} onChange={(e => setMail(e.target.value))}/>
+                </Form.Group>
+                <Form.Group className="mb-5 text-white" controlId="formGroupPassword">
+                    <Form.Label>Password</Form.Label>
+                    <div className="inputPass">
+                        <Form.Control className="inputPassText" type={showPassword ? "text" : "password"} placeholder="Contraseña" required value={pwd} onChange={(e => setPwd(e.target.value))}/>
+                        <Form.Check type="checkbox" onClick={() => setShowPassword(!showPassword)} />
+                    </div>
+                    <a href="">Olvide mi Contraseña</a>
+                </Form.Group>
+                <Button variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
+                <h3>{error}</h3>
+            </Form>
             </div>
         </div>
     );

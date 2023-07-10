@@ -8,20 +8,20 @@ import axios from 'axios';
 const FormRegisterV = (props) => {
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
-    const [contraseña, setContraseña] = useState("");
+    const [telefono, setTelefono] = useState("");
     const [mail, setMail] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
 
-        let datos = {
-            nombre: nombre,
-            apellido: apellido,
-            mail: mail,
-            contraseña: contraseña,
+        let cliente = {
+            Nombre: nombre,
+            Apellido: apellido,
+            Mail: mail,
+            Telefono: telefono,
         };
 
-        axios.post("http://localhost:3001/usuario", datos)
+        axios.post("http://localhost:3001/clientes", {cliente})
             .then((response) => {
                 console.log(response.status, response.data.token);
             });
@@ -33,24 +33,23 @@ const FormRegisterV = (props) => {
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Label className="fs-4 text-white"><b>Nombre</b></Form.Label>
-                        <Form.Control type="text" placeholder="Nombre" value={datos.nombre} onChange={(e => setNombre(e.target.value))} />
+                        <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={(e => setNombre(e.target.value))} />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="formGridPassword">
                         <Form.Label className="fs-4 text-white"><b>Apellido</b></Form.Label>
-                        <Form.Control type="text" placeholder="Apellido" value={datos.apellido} onChange={(e => setApellido(e.target.value))}/>
+                        <Form.Control type="text" placeholder="Apellido" value={apellido} onChange={(e => setApellido(e.target.value))}/>
                     </Form.Group>
                 </Row>
 
                 <Form.Group className="mb-3" controlId="formGridAddress1">
                     <Form.Label className="fs-4 text-white"><b>Email</b></Form.Label>
-                    <Form.Control type="email" placeholder="Tu E-Mail" value={datos.mail} onChange={(e => setMail(e.target.value))} />
+                    <Form.Control type="email" placeholder="Tu E-Mail" value={mail} onChange={(e => setMail(e.target.value))} />
                 </Form.Group>
                 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
-                    <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
-                    <Form.Control type="password" placeholder="Contraseña" value={datos.contraseña} onChange={(e => setContraseña(e.target.value))}/>
-                    <p className="text-white">Mínimo 8 caracteres</p>
+                    <Form.Label className="fs-4 text-white"><b>Telefono</b></Form.Label>
+                    <Form.Control type="text" placeholder="Numero de telefono" value={telefono} onChange={(e => setTelefono(e.target.value))}/>
                 </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit">

@@ -8,22 +8,24 @@ const ListadoVendedor = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/usuario/getById/1')
+        axios.get('http://localhost:3001/usuario')
             .then((response) => {
                 console.log(response)
                 const usuarios = response.data;
                 setUsuarios(usuarios);
                 console.log(usuarios)
             });
-    });
+    }, []);
+    //<a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{usuario.Nombre} {usuario.Apellido}   </a>
+
 
     return (
         <div className='container'>
             <div class="row mt-3">
-                <h1 className='center'>Listado de vendedores</h1>
+                <h1 className='center text-white'>Listado de vendedores</h1>
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">
-                        <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{usuarios.Nombre} {usuarios.Apellido}   </a>
+                        {usuarios.map((element) =>(<a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{element.Nombre} {element.Apellido}</a>))}
                     </div>
                 </div>
                 <div class="col-4">
@@ -39,7 +41,7 @@ const ListadoVendedor = () => {
                                 </ul>
                                 <div class="card-body">
                                     <a href="#" class="card-link">Gráficos</a>
-                                    <a href="#" class="card-link">Another link</a>
+                                    <a href="#" class="card-link">link</a>
                                 </div>
                             </div>
                         </div>

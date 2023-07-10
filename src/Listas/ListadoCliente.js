@@ -6,14 +6,14 @@ const ListadoCliente = () => {
     const [clientes, setClientes] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/clientes')
+        axios.get('http://localhost:3001/clientes/SmanWatches')
             .then((response) => {
                 console.log(response)
                 let clientes = response.data;
                 setClientes(clientes);
                 console.log(clientes)
             });
-    });
+    }, []);
 
     //{clientes.map(cliente => <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{cliente.Nombre} {cliente.Apellido}</a>)}
     //<a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{clientes.Nombre} {clientes.Apellido}</a>
@@ -22,7 +22,7 @@ const ListadoCliente = () => {
             <div class="row mb-3">
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">
-                        {clientes.map(cliente => <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{cliente.Nombre} {cliente.Apellido}</a>)}
+                        {clientes.map(cliente =>( <a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{cliente.Nombre} {cliente.Apellido}</a>))}
                     </div>
                 </div>
                 <div class="col-4">
