@@ -91,7 +91,7 @@ const FormLogin = () => {
                     <a href="">Olvide mi Contraseña</a>
                 </Form.Group>
                 <Button variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
-                <h3>{error}</h3>
+                <p className="text-danger mt-2">{error}</p>
             </Form>
             </div>
         </div>

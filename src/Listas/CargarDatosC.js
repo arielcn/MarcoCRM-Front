@@ -1,7 +1,7 @@
 const CargarDatosC = () => {
     return (
         <div className="container">
-            <h1 className="text-center mt-5">Cargar datos de clientes</h1>
+            <h1 className="text-white text-center mt-5">Cargar datos de clientes</h1>
             <form>
                 <div className="row mb-4">
                     <div className="col">

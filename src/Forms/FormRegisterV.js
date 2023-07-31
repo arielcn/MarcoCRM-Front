@@ -8,8 +8,10 @@ import axios from 'axios';
 const FormRegisterV = (props) => {
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
-    const [telefono, setTelefono] = useState("");
+    const [pwd, setPwd] = useState("");
     const [mail, setMail] = useState("");
+    const [error, setError] = useState('')
+
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
@@ -18,12 +20,17 @@ const FormRegisterV = (props) => {
             Nombre: nombre,
             Apellido: apellido,
             Mail: mail,
-            Telefono: telefono,
+            Pwd: pwd,
         };
 
-        axios.post("http://localhost:3001/clientes", {cliente})
+        axios.post("http://localhost:3001/clientes", { cliente })
             .then((response) => {
                 console.log(response.status, response.data.token);
+                setError('')
+            })
+            .catch((err) => {
+                setError("Mail ya registrado");
+                console.log("ERROR!", err);
             });
     }
 
@@ -38,7 +45,7 @@ const FormRegisterV = (props) => {
 
                     <Form.Group as={Col} controlId="formGridPassword">
                         <Form.Label className="fs-4 text-white"><b>Apellido</b></Form.Label>
-                        <Form.Control type="text" placeholder="Apellido" value={apellido} onChange={(e => setApellido(e.target.value))}/>
+                        <Form.Control type="text" placeholder="Apellido" value={apellido} onChange={(e => setApellido(e.target.value))} />
                     </Form.Group>
                 </Row>
 
@@ -46,15 +53,17 @@ const FormRegisterV = (props) => {
                     <Form.Label className="fs-4 text-white"><b>Email</b></Form.Label>
                     <Form.Control type="email" placeholder="Tu E-Mail" value={mail} onChange={(e => setMail(e.target.value))} />
                 </Form.Group>
-                
+
                 <Form.Group className="mb-3" controlId="formGridAddress2">
-                    <Form.Label className="fs-4 text-white"><b>Telefono</b></Form.Label>
-                    <Form.Control type="text" placeholder="Numero de telefono" value={telefono} onChange={(e => setTelefono(e.target.value))}/>
+                    <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
+                    <Form.Control type="password" placeholder="Contraseña" value={pwd} onChange={(e => setPwd(e.target.value))} />
                 </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit">
                     Registrarse
                 </Button>
+
+                <p className="text-danger mt-2">{error}</p>
             </Form>
         </div>
         /*<div className="container">

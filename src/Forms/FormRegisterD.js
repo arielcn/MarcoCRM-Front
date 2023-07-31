@@ -12,6 +12,7 @@ const FormRegisterD = () => {
     const [mail, setMail] = useState("");
     const [codigoEmpresa, setCodigoEmpresa] = useState("");
     const [cuit, setCuit] = useState("")
+    const [error, setError] = useState('')
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
@@ -28,8 +29,10 @@ const FormRegisterD = () => {
         axios.post("http://localhost:3001/usuario", {usuario})
             .then((response) => {
                 console.log(response.status, response.data.token);
+                setError('')
             })
             .catch((err) => {
+                setError("Mail ya registrado");
                 console.log("ERROR!", err);
             });
     }
@@ -62,17 +65,19 @@ const FormRegisterD = () => {
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>CUIT</b></Form.Label>
-                    <Form.Control type="password" placeholder="CUIT" value={cuit} onChange={(e => setCuit(e.target.value))} />
+                    <Form.Control type="text" placeholder="CUIT" value={cuit} onChange={(e => setCuit(e.target.value))} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>CODIGO de la EMPRESA u ORGANIZACIÓN</b></Form.Label>
-                    <Form.Control type="password" placeholder="Codigo" value={codigoEmpresa} onChange={(e => setCodigoEmpresa(e.target.value))} />
+                    <Form.Control type="text" placeholder="Codigo" value={codigoEmpresa} onChange={(e => setCodigoEmpresa(e.target.value))} />
                 </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit">
                     Registrarse
                 </Button>
+
+                <p className="text-danger mt-2">{error}</p>
             </Form>
         </div>
     );
