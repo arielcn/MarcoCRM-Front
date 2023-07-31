@@ -17,7 +17,7 @@ function App() {
         <img src="logo.png" className="App-logo" alt="logo" />
       </header>
       <body>
-        <FormRegisterD></FormRegisterD>
+        <FormRegisterV></FormRegisterV>
       </body>
     </div>
   );

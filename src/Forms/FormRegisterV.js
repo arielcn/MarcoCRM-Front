@@ -8,7 +8,7 @@ import axios from 'axios';
 const FormRegisterV = (props) => {
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
-    const [pwd, setPwd] = useState("");
+    const [contraseña, setContraseña] = useState("");
     const [mail, setMail] = useState("");
     const [error, setError] = useState('')
 
@@ -16,14 +16,14 @@ const FormRegisterV = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
 
-        let cliente = {
+        let vendedor = {
             Nombre: nombre,
             Apellido: apellido,
+            Contraseña: contraseña,
             Mail: mail,
-            Pwd: pwd,
         };
 
-        axios.post("http://localhost:3001/clientes", { cliente })
+        axios.post("http://localhost:3001/usuario", { vendedor })
             .then((response) => {
                 console.log(response.status, response.data.token);
                 setError('')
@@ -31,6 +31,7 @@ const FormRegisterV = (props) => {
             .catch((err) => {
                 setError("Mail ya registrado");
                 console.log("ERROR!", err);
+                console.log(vendedor)
             });
     }
 
@@ -56,7 +57,7 @@ const FormRegisterV = (props) => {
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
-                    <Form.Control type="password" placeholder="Contraseña" value={pwd} onChange={(e => setPwd(e.target.value))} />
+                    <Form.Control type="password" placeholder="Contraseña" value={contraseña} onChange={(e => setContraseña(e.target.value))} />
                 </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit">
