@@ -7,7 +7,7 @@ const ListadoCliente = () => {
     const [clienteSeleccionado, setClienteSeleccionado] = useState("");
 
     useEffect(() => {
-        axios.get('http://localhost:3001/clientes/SmanWatches')
+        axios.get('http://localhost:3001/clientes/Microsoft')
             .then((response) => {
                 console.log(response)
                 let datosClientes = response.data;
@@ -31,40 +31,50 @@ const ListadoCliente = () => {
             <div class="row mb-3">
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">
-                        {clientes.map(cliente, index => (<a
-                                key={index}
-                                className={`list-group-item list-group-item-primary ${clienteSeleccionado === index ? 'active' : ''}`}
-                                onClick={() => seleccionarCliente(index)}
-                                data-bs-toggle="list"
-                                href={`#list-name-${index}`}
-                                role="tab"
-                                aria-controls={`list-name-${index}`}
-                            >
-                                {cliente.Nombre} {cliente.Apellido}
-                            </a>
-                        
+                        {clientes.map((cliente, index) => (<a
+                            key={index}
+                            className={`list-group-item list-group-item-primary ${clienteSeleccionado === index ? 'active' : ''}`}
+                            onClick={() => seleccionarCliente(index)}
+                            data-bs-toggle="list"
+                            href={`#list-name-${index}`}
+                            role="tab"
+                            aria-controls={`list-name-${index}`}
+                        >
+                            {cliente.Nombre} {cliente.Apellido}
+                        </a>
+
                         ))}
                     </div>
 
                 </div>
-                <div class="col-4">
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade" id="list-name" role="tabpanel" aria-labelledby="list-name-list">
-
-                            <ul class="list-group">
-                                <div>{clientes.map(cliente => (<li class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">
+                <div className="col-4">
+                    <div className="tab-content" id="nav-tabContent">
+                        {clientes.map((cliente, index) => (
+                            <div
+                                key={index}
+                                className={`tab-pane fade ${clienteSeleccionado === index ? 'show active' : ''}`}
+                                id={`list-name-${index}`}
+                                role="tabpanel"
+                                aria-labelledby={`list-name-${index}-list`}
+                            >
+                                <ul className="list-group">
+                                    <li className="list-group-item">
+                                        <strong>Nombre:</strong> {cliente.Nombre}
+                                    </li>
+                                    <li className="list-group-item">
+                                        <strong>Apellido:</strong> {cliente.Apellido}
+                                    </li>
                                     <li className="list-group-item">
                                         <strong>Correo electrónico:</strong> {cliente.Mail}
                                     </li>
                                     <li className="list-group-item">
-                                        <strong>Teléfono</strong> {cliente.Telefono}
+                                        <strong>Teléfono:</strong> {cliente.Telefono}
                                     </li>
-                                </li>))}
-                                </div>
-
-                            </ul>
-                        </div>
+                                </ul>
+                            </div>
+                        ))}
                     </div>
+
                 </div>
             </div>
             <button className="btn btn-secondary" type="submit">Cargar Cliente</button>

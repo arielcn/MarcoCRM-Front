@@ -17,7 +17,7 @@ function App() {
         <img src="logo.png" className="App-logo" alt="logo" />
       </header>
       <body>
-        <ListadoCliente></ListadoCliente>
+        <ListadoVendedor></ListadoVendedor>
       </body>
     </div>
   );
