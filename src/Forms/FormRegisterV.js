@@ -10,6 +10,7 @@ const FormRegisterV = (props) => {
     const [apellido, setApellido] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [mail, setMail] = useState("");
+    const [telefono, setTelefono] = useState("");
     const [error, setError] = useState('')
 
 
@@ -21,6 +22,7 @@ const FormRegisterV = (props) => {
             Apellido: apellido,
             Contraseña: contraseña,
             Mail: mail,
+            Telefono: telefono,
         };
 
         axios.post("http://localhost:3001/usuario", { vendedor })
@@ -58,6 +60,11 @@ const FormRegisterV = (props) => {
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
                     <Form.Control type="password" placeholder="Contraseña" value={contraseña} onChange={(e => setContraseña(e.target.value))} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formGridAddress2">
+                    <Form.Label className="fs-4 text-white"><b>Teléfono</b></Form.Label>
+                    <Form.Control type="number" placeholder="Teléfono" value={telefono} onChange={(e => setTelefono(e.target.value))} />
                 </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit">
