@@ -25,9 +25,10 @@ const FormRegisterV = (props) => {
             Telefono: telefono,
         };
 
-        axios.post("http://localhost:3001/usuario", { vendedor })
+        axios.post("http://localhost:3001/usuario", vendedor)
+            .then(response => response.json())
             .then((response) => {
-                console.log(response.status, response.data.token);
+                console.log(response);
                 setError('')
             })
             .catch((err) => {
