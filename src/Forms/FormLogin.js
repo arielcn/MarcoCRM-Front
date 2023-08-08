@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./FormLogin.css";
 import { Form, Button, Container } from "react-bootstrap";
@@ -92,6 +93,7 @@ const FormLogin = () => {
                 </Form.Group>
                 <Button variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
                 <p className="text-danger mt-2">{error}</p>
+                <Link to={"/elegir-user"}>Registrate</Link>
             </Form>
             </div>
         </div>

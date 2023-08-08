@@ -10,7 +10,7 @@ const ListadoCliente = () => {
         axios.get('http://localhost:3001/clientes/Microsoft')
             .then((response) => {
                 console.log(response)
-                let datosClientes = response.data;
+                const datosClientes = response.data;
                 setClientes(datosClientes);
                 console.log(datosClientes)
             });

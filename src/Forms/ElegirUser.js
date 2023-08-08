@@ -1,11 +1,14 @@
 import "./ElegirUser.css";
+import { useNavigate } from "react-router-dom";
 
-const ElegirUser = (props) => {
+const ElegirUser = () => {
+    const navigate = useNavigate();
+
     return (
         <div>
             <h1 className="titulo">Elige el tipo de cuenta</h1>
-            <button className="btn1">Dueño</button>
-            <button className="btn2">Vendedor</button>
+            <button onClick={() => navigate("/registro-d")} className="btn1">Dueño</button>
+            <button onClick={() => navigate("/registro-v")} className="btn2">Vendedor</button>
         </div>
     );
 }
