@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./FormLogin.css";
 import { Form, Button, Container } from "react-bootstrap";
@@ -10,6 +10,7 @@ const FormLogin = () => {
     const [error, setError] = useState('');
     const [mail, setMail] = useState("");
     const [pwd, setPwd] = useState("");
+    const navigate = useNavigate();
 
     // User Login info
 
@@ -83,7 +84,7 @@ const FormLogin = () => {
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" placeholder="Ingresar email" required value={mail} onChange={(e => setMail(e.target.value))}/>
                 </Form.Group>
-                <Form.Group className="mb-5 text-white" controlId="formGroupPassword">
+                <Form.Group className="mb-4 text-white" controlId="formGroupPassword">
                     <Form.Label>Password</Form.Label>
                     <div className="inputPass">
                         <Form.Control className="inputPassText" type={showPassword ? "text" : "password"} placeholder="Contraseña" required value={pwd} onChange={(e => setPwd(e.target.value))}/>
@@ -91,7 +92,7 @@ const FormLogin = () => {
                     </div>
                     <a href="">Olvide mi Contraseña</a>
                 </Form.Group>
-                <Button variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
+                <Button onClick={() => navigate("/home")} variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
                 <p className="text-danger mt-2">{error}</p>
                 <Link to={"/elegir-user"}>Registrate</Link>
             </Form>

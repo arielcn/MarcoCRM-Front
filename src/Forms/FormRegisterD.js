@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -12,6 +13,7 @@ const FormRegisterD = () => {
     const [mail, setMail] = useState("");
     const [cuit, setCuit] = useState("")
     const [error, setError] = useState('')
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
@@ -66,7 +68,7 @@ const FormRegisterD = () => {
                     <Form.Control type="text" placeholder="CUIT" required value={cuit} onChange={(e => setCuit(e.target.value))} />
                 </Form.Group>
 
-                <Button variant="primary" size="lg" type="submit">
+                <Button onClick={() => navigate("/")} variant="primary" size="lg" type="submit">
                     Registrarse
                 </Button>
 

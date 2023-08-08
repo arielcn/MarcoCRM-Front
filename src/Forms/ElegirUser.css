@@ -3,23 +3,23 @@ body {
 }
 
 .titulo {
+    margin-top: 3%;
     font-size: 40px;
     text-align: center;
     color: #fff;
 }
 
 .btn1, .btn2 {
+    display: block;
     font-family: sans-serif;
     font-size: 48px;
     color: #ffffff;
-    text-align: center;
-    display: block;
     width: 433px;
     height: 130px;
-    border-radius: 12px;
-}
+    border-radius: 12px;}
 
 .btn1 {
+    margin-top: 40px;
     background-color: #0F4571;
 }
 

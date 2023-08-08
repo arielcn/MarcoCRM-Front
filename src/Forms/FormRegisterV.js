@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -12,7 +13,7 @@ const FormRegisterV = (props) => {
     const [mail, setMail] = useState("");
     const [telefono, setTelefono] = useState("");
     const [error, setError] = useState('')
-
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
@@ -61,6 +62,7 @@ const FormRegisterV = (props) => {
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
                     <Form.Control type="password" placeholder="Contraseña" value={contraseña} onChange={(e => setContraseña(e.target.value))} />
+                    <p className="text-white">Mínimo 8 caracteres</p>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
@@ -68,7 +70,7 @@ const FormRegisterV = (props) => {
                     <Form.Control type="number" placeholder="Teléfono" value={telefono} onChange={(e => setTelefono(e.target.value))} />
                 </Form.Group>
 
-                <Button variant="primary" size="lg" type="submit">
+                <Button onClick={() => navigate("/codigo-empresa")} variant="primary" size="lg" type="submit">
                     Registrarse
                 </Button>
 

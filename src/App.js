@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from './Layout';
 import FormLogin from './Forms/FormLogin';
+import Home from "./Pages/Home";
 import ElegirUser from './Forms/ElegirUser';
 import FormRegisterD from './Forms/FormRegisterD';
 import FormRegisterV from './Forms/FormRegisterV';
@@ -17,9 +18,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<FormLogin />}></Route>
+          <Route path="/home" element={<Home />}></Route>
           <Route path="/elegir-user" element={<ElegirUser />}></Route>
           <Route path="/registro-d" element={<FormRegisterD />}></Route>
           <Route path="/registro-v" element={<FormRegisterV />}></Route>
+          <Route path="/codigo-empresa" element={<CodigoEmpresa />}></Route>
           <Route path="*" element={<h1 className="text-center mt-2 text-white">404: Page not found</h1>}></Route>
         </Route>
       </Routes>
