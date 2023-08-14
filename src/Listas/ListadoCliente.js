@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ListadoCliente.css'
+import { useNavigate } from 'react-router-dom';
 
 const ListadoCliente = () => {
     const [clientes, setClientes] = useState([]);
     const [clienteSeleccionado, setClienteSeleccionado] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:3001/clientes/Microsoft')
@@ -77,7 +79,7 @@ const ListadoCliente = () => {
 
                 </div>
             </div>
-            <button className="btn btn-secondary" type="submit">Cargar Cliente</button>
+            <button onClick={() => {navigate('/cargar-datos-c')}} className="btn btn-secondary" type="submit">Cargar Cliente</button>
         </div>
     );
 };

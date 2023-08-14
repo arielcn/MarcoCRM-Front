@@ -10,6 +10,8 @@ import CodigoEmpresa from './Forms/CodigoEmpresa';
 import ListadoCliente from './Listas/ListadoCliente';
 import ListadoVendedor from './Listas/ListadoVendedor';
 import CargarDatosC from './Listas/CargarDatosC';
+import Agenda from "./Pages/Agenda";
+import Tarea from "./Pages/Tarea";
 
 function App() {
   //  <img src={logo} className="App-logo" alt="logo" />
@@ -22,7 +24,11 @@ function App() {
           <Route path="/elegir-user" element={<ElegirUser />}></Route>
           <Route path="/registro-d" element={<FormRegisterD />}></Route>
           <Route path="/registro-v" element={<FormRegisterV />}></Route>
+          <Route path="/cargar-datos-c" element={<CargarDatosC />}></Route>
           <Route path="/codigo-empresa" element={<CodigoEmpresa />}></Route>
+          <Route path="/agenda" element={<Agenda />}></Route>
+          <Route path="/listadoCliente" element={<ListadoCliente />}></Route>
+          <Route path="/tarea" element={<Tarea />}></Route>
           <Route path="*" element={<h1 className="text-center mt-2 text-white">404: Page not found</h1>}></Route>
         </Route>
       </Routes>

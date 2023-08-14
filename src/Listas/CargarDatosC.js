@@ -50,12 +50,12 @@ const CargarDatosC = () => {
 
                 <Form.Group className="mb-3" controlId="formGridAddress1">
                     <Form.Label className="fs-4 text-white"><b>Email</b></Form.Label>
-                    <Form.Control type="email" placeholder="Tu E-Mail" required value={mail} onChange={(e => setMail(e.target.value))} />
+                    <Form.Control type="email" placeholder="E-Mail del cliente" required value={mail} onChange={(e => setMail(e.target.value))} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Teléfono</b></Form.Label>
-                    <Form.Control type="number" placeholder="Teléfono" required value={telefono} onChange={(e => setTelefono(e.target.value))} />
+                    <Form.Control type="text" placeholder="Teléfono" required value={telefono} onChange={(e => setTelefono(e.target.value))} />
                 </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit">

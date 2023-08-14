@@ -28,6 +28,7 @@ const FormLogin = () => {
         .then(res =>{
             console.log(res);
             setError('');
+            navigate('/home');
         })
         .catch(res => {
             setError("Credenciales Incorrectas");
@@ -92,7 +93,7 @@ const FormLogin = () => {
                     </div>
                     <a href="">Olvide mi Contraseña</a>
                 </Form.Group>
-                <Button onClick={() => navigate("/home")} variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
+                <Button variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
                 <p className="text-danger mt-2">{error}</p>
                 <Link to={"/elegir-user"}>Registrate</Link>
             </Form>
