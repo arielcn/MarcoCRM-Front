@@ -24,12 +24,14 @@ const FormRegisterD = () => {
             Contraseña: contraseña,
             Mail: mail,
             Cuit: cuit,
+            fkRol: 1,
         };
 
         axios.post("http://localhost:3001/usuario", {usuario})
             .then((response) => {
                 console.log(response.status, response.data.token);
-                setError('')
+                setError('');
+                navigate("/");
             })
             .catch((err) => {
                 setError("Mail ya registrado");
@@ -68,7 +70,7 @@ const FormRegisterD = () => {
                     <Form.Control type="text" placeholder="CUIT" required value={cuit} onChange={(e => setCuit(e.target.value))} />
                 </Form.Group>
 
-                <Button onClick={() => navigate("/")} variant="primary" size="lg" type="submit">
+                <Button     variant="primary" size="lg" type="submit">
                     Registrarse
                 </Button>
 

@@ -4,13 +4,14 @@ const Home = () => {
     return (
         <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Dropdown Button
+                Abrir menú
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
-                <Dropdown.Item href="/Agenda">Agenda</Dropdown.Item>
-                <Dropdown.Item href="/ListadoCliente">Lista clientes</Dropdown.Item>
-                <Dropdown.Item href="/Tarea">Nueva tarea</Dropdown.Item>
+                <Dropdown.Item href="/agenda">Agenda</Dropdown.Item>
+                <Dropdown.Item href="/listado-cliente">Lista clientes</Dropdown.Item>
+                <Dropdown.Item href="/tarea">Nueva tarea</Dropdown.Item>
+                <Dropdown.Item href="/reuniones">Reuniones</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );

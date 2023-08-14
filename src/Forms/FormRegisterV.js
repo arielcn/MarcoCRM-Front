@@ -15,27 +15,28 @@ const FormRegisterV = (props) => {
     const [error, setError] = useState('')
     const navigate = useNavigate();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault(); //Prevent page reload
 
-        let vendedor = {
+        let usuario = {
             Nombre: nombre,
             Apellido: apellido,
             Contraseña: contraseña,
             Mail: mail,
             Telefono: telefono,
+            fkRol: 2,
         };
 
-        axios.post("http://localhost:3001/usuario", vendedor)
-            .then(response => response.json())
+        axios.post("http://localhost:3001/usuario", {usuario})
             .then((response) => {
                 console.log(response);
                 setError('')
+                navigate('/codigo-empresa');
             })
             .catch((err) => {
                 setError("Mail ya registrado");
                 console.log("ERROR!", err);
-                console.log(vendedor)
+                console.log(usuario)
             });
     }
 
@@ -70,7 +71,7 @@ const FormRegisterV = (props) => {
                     <Form.Control type="number" placeholder="Teléfono" value={telefono} onChange={(e => setTelefono(e.target.value))} />
                 </Form.Group>
 
-                <Button onClick={() => navigate("/codigo-empresa")} variant="primary" size="lg" type="submit">
+                <Button variant="primary" size="lg" type="submit">
                     Registrarse
                 </Button>
 
