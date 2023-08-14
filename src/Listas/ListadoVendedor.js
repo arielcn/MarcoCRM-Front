@@ -73,7 +73,6 @@ const ListadoVendedor = () => {
                     </div>
                 </div>
             </div>
-            <button className="btn btn-secondary" type="submit">Cargar vendedor</button>
         </div>
     );
 };

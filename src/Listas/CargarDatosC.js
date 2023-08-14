@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import axios from "axios";
+import { useEffect } from "react";
 
 const CargarDatosC = () => {
     const [nombre, setNombre] = useState("");

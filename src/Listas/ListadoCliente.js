@@ -8,6 +8,7 @@ const ListadoCliente = () => {
     const [clienteSeleccionado, setClienteSeleccionado] = useState("");
     const navigate = useNavigate();
 
+
     useEffect(() => {
         axios.get('http://localhost:3001/clientes/Microsoft')
             .then((response) => {
@@ -15,7 +16,11 @@ const ListadoCliente = () => {
                 const datosClientes = response.data;
                 setClientes(datosClientes);
                 console.log(datosClientes)
+            })
+            .catch((error) => {
+                console.error("Error al obtener clientes:", error);
             });
+
     }, []);
 
     const seleccionarCliente = (index) => {
@@ -79,7 +84,7 @@ const ListadoCliente = () => {
 
                 </div>
             </div>
-            <button onClick={() => {navigate('/cargar-datos-c')}} className="btn btn-secondary" type="submit">Cargar Cliente</button>
+            <button onClick={() => { navigate('/cargar-datos-c') }} className="btn btn-secondary" type="submit">Cargar Cliente</button>
         </div>
     );
 };
