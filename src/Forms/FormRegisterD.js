@@ -11,6 +11,7 @@ const FormRegisterD = () => {
     const [apellido, setApellido] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [mail, setMail] = useState("");
+    const [nombreEmpresa, setNombreEmpresa] = useState("");
     const [cuit, setCuit] = useState("")
     const [error, setError] = useState('')
     const navigate = useNavigate();
@@ -23,11 +24,12 @@ const FormRegisterD = () => {
             Apellido: apellido,
             Contraseña: contraseña,
             Mail: mail,
+            NombreEmpresa: nombreEmpresa,
             Cuit: cuit,
             fkRol: 1,
         };
 
-        axios.post("http://localhost:3001/usuario", {usuario})
+        axios.post("http://localhost:3001/usuario", { usuario })
             .then((response) => {
                 console.log(response.status, response.data.token);
                 setError('');
@@ -65,12 +67,17 @@ const FormRegisterD = () => {
                     <p className="text-white">Mínimo 8 caracteres</p>
                 </Form.Group>
 
+                <Form.Group className="mb-3" controlId="formGridAddress1">
+                    <Form.Label className="fs-4 text-white"><b>Nombre de la Pyme/Empresa</b></Form.Label>
+                    <Form.Control type="text" placeholder="Tu Pyme/Empresa" required value={nombreEmpresa} onChange={(e => setNombreEmpresa(e.target.value))} />
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>CUIT</b></Form.Label>
                     <Form.Control type="text" placeholder="CUIT" required value={cuit} onChange={(e => setCuit(e.target.value))} />
                 </Form.Group>
 
-                <Button     variant="primary" size="lg" type="submit">
+                <Button variant="primary" size="lg" type="submit">
                     Registrarse
                 </Button>
 
