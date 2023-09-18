@@ -13,6 +13,7 @@ import CargarDatosC from './Listas/CargarDatosC';
 import Agenda from "./Pages/Agenda";
 import Tarea from "./Pages/Tarea";
 import Reuniones from "./Pages/Reuniones";
+import ForgotPwd from "./Forms/ForgotPwd";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<FormLogin />}></Route>
+          <Route path="/forgot-pwd" element={<ForgotPwd />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/elegir-user" element={<ElegirUser />}></Route>
           <Route path="/registro-d" element={<FormRegisterD />}></Route>

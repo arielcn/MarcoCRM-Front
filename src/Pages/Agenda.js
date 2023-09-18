@@ -1,21 +1,15 @@
 import { Table } from "react-bootstrap";
 import axios from "axios";
-import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 
 
 function Agenda() {
     const [agenda, setAgenda] = useState([]);
-    const navigate = useNavigate();
-    const { id } = useParams();
-
-
 
     useEffect(() => {
-        axios.get('http://localhost:3001/agendas')
+        axios.get('http://localhost:3001/agenda')
             .then((response) => {
                 console.log(response)
                 const datosAgenda = response.data;
@@ -30,38 +24,61 @@ function Agenda() {
 
 
     return (
-        <>
-            <h1>Agenda</h1>
-            <Table striped bordered hover>
-                {agenda.map((agenda, index) => (
-
-                    <div>
-                        <thead>
-                            <tr>
-                                <th>Nombre del cliente</th>
-                                <th>Apellido</th>
-                                <th>Teléfono</th>
-                                <th>Descrición</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <tr key={agenda.id}>
-                                <td>{agenda.nombreCliente}</td>
-                                <td>{agenda.apellidoCLiente}</td>
-                                <td>{agenda.telefono}</td>
-                                <td>{agenda.descripcion}</td>
-                            </tr>
-
-                        </tbody>
-                    </div>
-
-
-                ))}
-
-
+        <div className="container mt-5">
+            <h1 className="text-white mb-3">Agenda</h1>
+            <Table striped bordered hover variant="dark">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                    </tr>
+                    <tr>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>Larry the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
             </Table>
-        </>
+            <Table striped variant="dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cliente</th>
+                        <th>Telefono</th>
+                        <th>Descripcion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Mark Otto</td>
+                        <td>11332112</td>
+                        <td>Problema con stock</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>15232112</td>
+                        <td>Concretar</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Flecha</td>
+                        <td>11342172</td>
+                        <td>Concretar</td>
+                    </tr>
+                </tbody>
+            </Table>
+        </div>
     );
 }
 

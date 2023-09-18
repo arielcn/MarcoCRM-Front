@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
+import { Button, Col, Form, Row } from 'react-bootstrap'
+
 import axios from "axios";
 
 const FormRegisterD = () => {
@@ -11,7 +9,7 @@ const FormRegisterD = () => {
     const [apellido, setApellido] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [mail, setMail] = useState("");
-    const [nombreEmpresa, setNombreEmpresa] = useState("");
+    const [codigoEmpresa, setCodigoEmpresa] = useState("");
     const [cuit, setCuit] = useState("")
     const [error, setError] = useState('')
     const navigate = useNavigate();
@@ -24,7 +22,7 @@ const FormRegisterD = () => {
             Apellido: apellido,
             Contraseña: contraseña,
             Mail: mail,
-            NombreEmpresa: nombreEmpresa,
+            CodigoEmpresa: codigoEmpresa,
             Cuit: cuit,
             fkRol: 1,
         };
@@ -39,6 +37,18 @@ const FormRegisterD = () => {
                 setError("Mail ya registrado");
                 console.log("ERROR!", err);
             });
+    }
+
+    const generateRandomString = () => {
+        const num = 8;
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result1 = ' ';
+        const charactersLength = characters.length;
+        for (let i = 0; i < num; i++) {
+            result1 += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        setCodigoEmpresa(result1);
     }
 
     return (
@@ -68,8 +78,11 @@ const FormRegisterD = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress1">
-                    <Form.Label className="fs-4 text-white"><b>Nombre de la Pyme/Empresa</b></Form.Label>
-                    <Form.Control type="text" placeholder="Tu Pyme/Empresa" required value={nombreEmpresa} onChange={(e => setNombreEmpresa(e.target.value))} />
+                    <Form.Label className="fs-4 text-white"><b>Codigo de Empresa</b></Form.Label>
+                    <div className="row mt-0">
+                        <p className="text-white col-sm-6 fs-2">{codigoEmpresa}</p>
+                        <Button className="col-sm-6" variant="primary" onClick={generateRandomString}>Generar Código Aleatorio</Button>
+                    </div>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
