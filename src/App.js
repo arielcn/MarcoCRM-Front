@@ -15,9 +15,10 @@ import Tarea from "./Pages/Tarea";
 import Reuniones from "./Pages/Reuniones";
 
 function App() {
-  //  <img src={logo} className="App-logo" alt="logo" />
+
   return (
     <BrowserRouter>
+
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<FormLogin />}></Route>

@@ -1,4 +1,88 @@
+import { Table } from "react-bootstrap";
+import axios from "axios";
+import React, { useContext } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+
+
+function Agenda() {
+    const [agenda, setAgenda] = useState([]);
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/agendas')
+            .then((response) => {
+                console.log(response)
+                const datosAgenda = response.data;
+                setAgenda(datosAgenda);
+                console.log(datosAgenda)
+            })
+            .catch((error) => {
+                console.error("Error al obtener agenda:", error);
+            });
+
+    }, []);
+
+
+    return (
+        <>
+            <h1>Agenda</h1>
+            <Table striped bordered hover>
+                {agenda.map((agenda, index) => (
+
+                    <div>
+                        <thead>
+                            <tr>
+                                <th>Nombre del cliente</th>
+                                <th>Apellido</th>
+                                <th>Teléfono</th>
+                                <th>Descrición</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr key={agenda.id}>
+                                <td>{agenda.nombreCliente}</td>
+                                <td>{agenda.apellidoCLiente}</td>
+                                <td>{agenda.telefono}</td>
+                                <td>{agenda.descripcion}</td>
+                            </tr>
+
+                        </tbody>
+                    </div>
+
+
+                ))}
+
+
+            </Table>
+        </>
+    );
+}
+
+export default Agenda;
+
+
+
+
+
+
+
+/*import React, { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import axios from 'axios';
+import Carousel from 'react-bootstrap/Carousel';
+import { Card } from 'react-bootstrap';
+
 const Agenda = () => {
+
+    const [agenda, setAgenda] = useState(null);
+
 
     return (
 
@@ -81,5 +165,14 @@ const Agenda = () => {
 
     )
 
-}
-export default Agenda;
+}*/
+
+
+
+
+
+
+
+
+
+
