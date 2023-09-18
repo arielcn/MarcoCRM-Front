@@ -94,7 +94,7 @@ const FormLogin = () => {
                         <Form.Control className="inputPassText" type={showPassword ? "text" : "password"} placeholder="Contraseña" required value={pwd} onChange={(e => setPwd(e.target.value))}/>
                         <Form.Check type="checkbox" onClick={() => setShowPassword(!showPassword)} />
                     </div>
-                    <a href="">Olvide mi Contraseña</a>
+                    <Link to={"/forgot-pwd"}>Olvide mi Contraseña</Link>
                 </Form.Group>
                 <Button variant="primary" size="lg" type="submit">Iniciar Sesion</Button>
                 <p className="text-danger mt-2">{error}</p>
