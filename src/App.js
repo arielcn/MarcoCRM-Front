@@ -13,12 +13,19 @@ import CargarDatosC from './Listas/CargarDatosC';
 import Agenda from "./Pages/Agenda";
 import Tarea from "./Pages/Tarea";
 import Reuniones from "./Pages/Reuniones";
+import { useEffect, useState } from "react";
+import UsuarioContext from "./context/UsuarioContext";
 
 function App() {
+  const [mailUsuario, setMailUsuario] = useState("");
 
+  useEffect(() => {
+    console.log("MailUsuarioEnApp", mailUsuario);
+  }, [mailUsuario])
+ 
   return (
     <BrowserRouter>
-
+      <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario}}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<FormLogin />}></Route>
@@ -36,6 +43,7 @@ function App() {
           <Route path="*" element={<h1 className="text-center mt-2 text-white">404: Page not found</h1>}></Route>
         </Route>
       </Routes>
+      </UsuarioContext.Provider>
     </BrowserRouter>
   );
 }

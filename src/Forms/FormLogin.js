@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./FormLogin.css";
 import { Form, Button, Container } from "react-bootstrap";
+import UsuarioContext from "../context/UsuarioContext";
 
 const FormLogin = () => {
     // React States
@@ -11,9 +12,9 @@ const FormLogin = () => {
     const [mail, setMail] = useState("");
     const [pwd, setPwd] = useState("");
     const navigate = useNavigate();
+    const userContext = useContext(UsuarioContext);
 
     // User Login info
-
 
     const handleSubmit = (event) => {
         //Prevent page reload
@@ -23,6 +24,8 @@ const FormLogin = () => {
             mail: mail,
             pass: pwd
         };
+
+        userContext.setMailUsuario(mail);
 
         axios.post('http://localhost:3001/usuario/login', usuario)
         .then(res =>{

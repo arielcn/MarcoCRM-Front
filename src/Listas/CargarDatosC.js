@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import axios from "axios";
 import { useEffect } from "react";
+import UsuarioContext from "../context/UsuarioContext";
 
 const CargarDatosC = () => {
     const [nombre, setNombre] = useState("");
@@ -12,15 +13,19 @@ const CargarDatosC = () => {
     const [mail, setMail] = useState("");
     const [telefono, setTelefono] = useState("")
     const [error, setError] = useState('')
+    const userContext = useContext(UsuarioContext);
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
+
+        console.log("joemama", userContext.mailUsuario);
 
         let cliente = {
             Nombre: nombre,
             Apellido: apellido,
             Mail: mail,
             Telefono: telefono,
+            MailUsuario: userContext.mailUsuario
         };
 
         axios.post("http://localhost:3001/clientes", {cliente})
