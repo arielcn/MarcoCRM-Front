@@ -29,55 +29,45 @@ function Agenda() {
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Reunion</th>
+                        <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                    </tr>
-                    <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                    </tr>
-                    <tr>
-                        <td colSpan={2}>Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </Table>
-            <Table striped variant="dark">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Cliente</th>
-                        <th>Telefono</th>
-                        <th>Descripcion</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark Otto</td>
-                        <td>11332112</td>
-                        <td>Problema con stock</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>15232112</td>
-                        <td>Concretar</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Flecha</td>
-                        <td>11342172</td>
-                        <td>Concretar</td>
+                        <td>
+                        <Table striped variant="dark">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Telefono</th>
+                                    <th>Descripcion</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mark Otto</td>
+                                    <td>11332112</td>
+                                    <td>Problema con stock</td>
+                                </tr>
+                                <tr>
+                                    <td>Jacob</td>
+                                    <td>15232112</td>
+                                    <td>Concretar</td>
+                                </tr>
+                                <tr>
+                                    <td>Flecha</td>
+                                    <td>11342172</td>
+                                    <td>Concretar</td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                        </td>
+                        <td className="text-center">20/9/2023</td>
                     </tr>
                 </tbody>
             </Table>
+
         </div>
     );
 }

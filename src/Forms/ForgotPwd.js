@@ -4,7 +4,8 @@ import { Form, Button } from "react-bootstrap";
 const ForgotPwd = () => {
     const [mail, setMail] = useState("");
 
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
         console.log("forgot", mail)
     };
 

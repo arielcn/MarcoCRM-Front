@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import axios from "axios";
-import { useEffect } from "react";
 import UsuarioContext from "../context/UsuarioContext";
 
 const CargarDatosC = () => {
@@ -14,11 +14,11 @@ const CargarDatosC = () => {
     const [telefono, setTelefono] = useState("")
     const [error, setError] = useState('')
     const userContext = useContext(UsuarioContext);
+    const navigate = useNavigate();
+
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
-
-        console.log("joemama", userContext.mailUsuario);
 
         let cliente = {
             Nombre: nombre,
@@ -29,11 +29,11 @@ const CargarDatosC = () => {
         };
 
         axios.post("http://localhost:3001/clientes", {cliente})
-            .then((response) => {
-                console.log(response.status, response.data.token);
+            .then(res => {
                 setError('')
+                navigate("/listado-cliente")
             })
-            .catch((err) => {
+            .catch(err => {
                 setError("Cliente ya existente");
                 console.log("ERROR!", err);
             });

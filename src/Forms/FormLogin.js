@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./FormLogin.css";
-import { Form, Button, Container } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import UsuarioContext from "../context/UsuarioContext";
 
 const FormLogin = () => {
@@ -29,7 +29,6 @@ const FormLogin = () => {
 
         axios.post('http://localhost:3001/usuario/login', usuario)
         .then(res =>{
-            console.log(res);
             setError('');
             navigate('/home');
         })
