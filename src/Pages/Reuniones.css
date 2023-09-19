@@ -4,3 +4,17 @@
     flex-shrink: 0;
     
 }
+.foto{
+    size: 10px;
+    margin-top: 10px;
+}
+.texto{
+    
+    color: white;
+}
+.tituloreunion{
+    color: white;
+    margin-left:60%;
+    margin-top: 100px;
+}
+
