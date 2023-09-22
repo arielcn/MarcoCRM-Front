@@ -1,8 +1,12 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const navigate = useNavigate();
+
+    const {state} = useLocation();
+
+    console.log("HOME", state.usuario);
 
     return (
         <Dropdown>

@@ -13,20 +13,28 @@ import CargarDatosC from './Listas/CargarDatosC';
 import Agenda from "./Pages/Agenda";
 import Tarea from "./Pages/Tarea";
 import Reuniones from "./Pages/Reuniones";
+import CargarDatosAgenda from "./Listas/CargarDatosAgenda";
 import ForgotPwd from "./Forms/ForgotPwd";
 import { useEffect, useState } from "react";
 import UsuarioContext from "./context/UsuarioContext";
 
 function App() {
   const [mailUsuario, setMailUsuario] = useState("");
+  const [usuario, setUsuario] = useState("");
+  const [datosAgenda, setDatosAgenda] = useState([]);
 
   useEffect(() => {
     console.log("MailUsuarioEnApp", mailUsuario);
   }, [mailUsuario])
+
+  useEffect(() => {
+    console.log("UsuarioEnApp", usuario);
+  }, [usuario])
+  
  
   return (
     <BrowserRouter>
-      <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario}}>
+      <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario, usuario, setUsuario, datosAgenda, setDatosAgenda}}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<FormLogin />}></Route>
@@ -42,6 +50,7 @@ function App() {
           <Route path="/listado-vendedor" element={<ListadoVendedor />}></Route>
           <Route path="/tarea" element={<Tarea />}></Route>
           <Route path="/reuniones" element={<Reuniones />}></Route>
+          <Route path="/cargar-datos-agenda" element={<CargarDatosAgenda />}></Route>
           <Route path="*" element={<h1 className="text-center mt-2 text-white">404: Page not found</h1>}></Route>
         </Route>
       </Routes>
