@@ -1,4 +1,14 @@
 .fechaHora {
-    width: 80%;
-    background-color: blueviolet;
+    align-items: center;
+    justify-content: center;
+    color: antiquewhite;
+}
+
+.fechaHora div{
+    width: 70%;
+}
+
+.fechaHora img{
+    width: 30%;
+    height: fit-content;
 }
