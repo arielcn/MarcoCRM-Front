@@ -1,20 +1,4 @@
-.cardReunion {
-    width: 169.686px;
-    height: 133px;
-    flex-shrink: 0;
-    
+.fechaHora {
+    width: 80%;
+    background-color: blueviolet;
 }
-.foto{
-    size: 10px;
-    margin-top: 10px;
-}
-.texto{
-    
-    color: white;
-}
-.tituloreunion{
-    color: white;
-    margin-left:60%;
-    margin-top: 100px;
-}
-

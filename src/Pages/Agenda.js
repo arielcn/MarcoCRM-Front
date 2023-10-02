@@ -1,11 +1,6 @@
 import { Table } from "react-bootstrap";
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import UsuarioContext from "../context/UsuarioContext";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function Agenda() {
