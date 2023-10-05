@@ -54,6 +54,7 @@ function Agenda() {
                         <tr>
                           <th>{agenda.NombreCliente}</th>
                           <th>{agenda.ApellidoCliente}</th>
+                          <th>{agenda.TelefonoCliente}</th>
                           <th>{agenda.Descripcion}</th>
                           <button
                             className="btn btn-danger"
@@ -62,13 +63,14 @@ function Agenda() {
                             Eliminar
                           </button>
                         </tr>
+                        <td className="text-center">{agenda.Fecha}</td>
                       </a>
                     ))}
                   </tr>
                 </tbody>
               </Table>
             </td>
-            <td className="text-center">20/9/2023</td>
+            
           </tr>
         </tbody>
       </Table>

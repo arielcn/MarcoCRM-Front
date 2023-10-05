@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import axios from "axios";
+import UsuarioContext from "../context/UsuarioContext";
+
 
 const CargarDatosAgenda = () => {
     const[nombreCliente, setNombreCliente] = useState("");
     const[apellidoCliente, setApellidoCliente] = useState("");
-    const[telefonoCliente, setTelefonoCliente] = useState("");
+    const[telefono, setTelefono] = useState("");
     const[descripcion, setDescripcion] = useState("");
     const[fecha, setFecha] = useState("");
     const [error, setError] = useState('')
+    const userContext = useContext(UsuarioContext);
     const navigate = useNavigate();
 
 
@@ -20,13 +23,15 @@ const CargarDatosAgenda = () => {
 
         let agenda = {
             NombreCliente: nombreCliente,
-            ApellidoCLiente: apellidoCliente,
-            TelefonoCLiente: telefonoCliente,
+            ApellidoCliente: apellidoCliente,
+            Telefono: telefono,
             Descripcion: descripcion,
             Fecha: fecha,
+            fkUsuario: userContext.mailUsuario
         };
+        console.log(agenda);
 
-        axios.post("http://localhost:3001/agenda", {agenda})
+        axios.post("http://localhost:3001/agenda", agenda)
             .then(res => {
                 setError('')
                 navigate("/agenda")
@@ -38,7 +43,6 @@ const CargarDatosAgenda = () => {
     }
 
     return (
-
         
             <div className="container">
             <Form onSubmit={handleSubmit}>
@@ -55,7 +59,7 @@ const CargarDatosAgenda = () => {
                 </Row>
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Teléfono del cliente</b></Form.Label>
-                    <Form.Control type="number" placeholder="Teléfono" required value={telefonoCliente} onChange={(e => setTelefonoCliente(e.target.value))} />
+                    <Form.Control type="number" placeholder="Teléfono" required value={telefono} onChange={(e => setTelefono(e.target.value))} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formGridAddress1">
                     <Form.Label className="fs-4 text-white"><b>Descripción</b></Form.Label>
