@@ -27,7 +27,7 @@ const CargarDatosAgenda = () => {
             Telefono: telefono,
             Descripcion: descripcion,
             Fecha: fecha,
-            fkUsuario: userContext.mailUsuario
+            fkUsuario: userContext.usuario.Id
         };
         console.log(agenda);
 

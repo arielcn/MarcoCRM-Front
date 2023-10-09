@@ -20,7 +20,7 @@ import UsuarioContext from "./context/UsuarioContext";
 
 function App() {
   const [mailUsuario, setMailUsuario] = useState("");
-  const [usuario, setUsuario] = useState("");
+  const [usuario, setUsuario] = useState();
   const [datosAgenda, setDatosAgenda] = useState([]);
 
   useEffect(() => {

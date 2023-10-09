@@ -30,6 +30,8 @@ const FormLogin = () => {
         axios.post('http://localhost:3001/usuario/login', usuario)
         .then(res =>{
             setError('');
+            // console.log(res)
+            userContext.setUsuario(res.data)
             navigate('/home', {state: {usuario: res.data}});
         })
         .catch(res => {

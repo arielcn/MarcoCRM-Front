@@ -43,7 +43,7 @@ function Agenda() {
                       <a
                         key={index}
                         className={`list-group-item list-group-item-primary ${
-                          notaSeleccionada === index ? "active" : ""
+                          notaSeleccionada ===  index ? "active" : ""
                         }`}
                         onClick={() => seleccionarNota(index)}
                         data-bs-toggle="list"
