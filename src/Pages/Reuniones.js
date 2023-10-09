@@ -49,6 +49,19 @@ const Reuniones = () => {
             <h3>Nombre cliente</h3>
             <h1>Título de la reunion</h1>
           </div>
+          <div className='row'>
+            <div className='col-6 notas text-white'>
+              <h3>Notas</h3>
+              <input placeholder='nota' />
+              <input placeholder='nota' />
+              <input placeholder='nota' />
+            </div>
+            <div className='ms-4 col-5 text-white'>
+              <h3>Imagen - Subir Archivo</h3>
+              <input type='file' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIxNSsYpzYYOMud_qstvFIqdEU2TriY-uVOg&usqp=CAU'>
+              </input>
+            </div>
+          </div>
         </section>
       </div>
     </div>

@@ -12,3 +12,12 @@
     width: 30%;
     height: fit-content;
 }
+
+.notas {
+    flex-direction: column;
+}
+
+.notas input {
+    width: 100%;
+    margin: 10px;
+}
