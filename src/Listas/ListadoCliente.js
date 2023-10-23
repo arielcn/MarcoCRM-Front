@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ListadoCliente.css'
 import { useNavigate } from 'react-router-dom';
+import { Navbar } from 'react-bootstrap';
+import Navbarr from '../Pages/Navbar';
 
 const ListadoCliente = () => {
     const [clientes, setClientes] = useState([]);
@@ -35,6 +37,7 @@ const ListadoCliente = () => {
     //<a class="list-group-item list-group-item-primary" id="list-name-list" data-bs-toggle="list" href="#list-name" role="tab" aria-controls="list-name">{clientes.Nombre} {clientes.Apellido}</a>
     return (
         <div className='container'>
+            <Navbarr></Navbarr>
             <div class="row mb-3">
                 <div class="col-8">
                     <div class="list-group" id="list-tab" role="tablist">
