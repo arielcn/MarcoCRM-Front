@@ -1,8 +1,10 @@
+import Navbarr from './Navbar';
 import './Reuniones.css';
 
 const Reuniones = () => {
   return (
     <div class="container px-4">
+      <Navbarr></Navbarr>
       <div class="row gx-5">
         <section class="col-4">
           <div class="p-3">

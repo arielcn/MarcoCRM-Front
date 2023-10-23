@@ -40,6 +40,12 @@ const FormLogin = () => {
     }
 
     return (
+        <>
+        <nav>
+        <header className="App-header">
+            <img src="logo.png" className="App-logo" alt="logo" />
+        </header>
+    </nav>
         <div className="app">
             <div className="login-form">
             <Form onSubmit={handleSubmit}>
@@ -62,6 +68,7 @@ const FormLogin = () => {
             </Form>
             </div>
         </div>
+        </>
     );
 }
 

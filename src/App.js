@@ -36,8 +36,8 @@ function App() {
     <BrowserRouter>
       <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario, usuario, setUsuario, datosAgenda, setDatosAgenda}}>
       <Routes>
-        <Route path="/" element={<Layout />}>
           <Route index element={<FormLogin />}></Route>
+        <Route path="/" element={<Layout />}>
           <Route path="/forgot-pwd" element={<ForgotPwd />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/elegir-user" element={<ElegirUser />}></Route>
