@@ -2,6 +2,7 @@ import { Table } from "react-bootstrap";
 import { useState, useContext } from "react";
 import UsuarioContext from "../context/UsuarioContext";
 import { Link } from "react-router-dom";
+import React from 'react';
 
 function Agenda() {
   const [notaSeleccionada, setNotaSeleccionada] = useState("");
@@ -42,9 +43,8 @@ function Agenda() {
                     {datosAgenda.map((agenda, index) => (
                       <a
                         key={index}
-                        className={`list-group-item list-group-item-primary ${
-                          notaSeleccionada ===  index ? "active" : ""
-                        }`}
+                        className={`list-group-item list-group-item-primary ${notaSeleccionada === index ? "active" : ""
+                          }`}
                         onClick={() => seleccionarNota(index)}
                         data-bs-toggle="list"
                         href={`#list-name-${index}`}
@@ -70,7 +70,7 @@ function Agenda() {
                 </tbody>
               </Table>
             </td>
-            
+
           </tr>
         </tbody>
       </Table>
@@ -82,5 +82,4 @@ function Agenda() {
     </div>
   );
 }
-
 export default Agenda;
