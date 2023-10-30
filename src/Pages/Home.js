@@ -8,6 +8,7 @@ import React from 'react';
 import { Row, Col, Container  } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbarr from './Navbar';
 
 
 function Tarea({ tarea, onDrop }) {
@@ -22,9 +23,9 @@ function Tarea({ tarea, onDrop }) {
     }))
 
     useEffect(() => {
-        axios.get('http://localhost:3001/notas')
+        axios.get('http://localhost:3001/notas/1')
             .then((response) => {
-                console.log(response)
+                console.log("notas:", response)
                 const datosTareas = response.data;
                 setTareas(datosTareas);
                 console.log(datosTareas)
@@ -38,10 +39,8 @@ function Tarea({ tarea, onDrop }) {
     return (
         <div ref={ref} style={{ opacity: isDragging ? 0.5 : 1 }}>
             <Card className="card text-center" style={{ width: '18rem' }}>
-                <Card.Img className="fotoCard" variant="top" src={tarea.Foto} />
                 <Card.Body className="d-flex flex-column align-items-center">
-                    <Card.Title className="tituloCard">{tarea.Titulo}</Card.Title>
-                    <Card.Text className="descCard">{tarea.Descripcion}</Card.Text>
+                    <Card.Text className="descCard">{tarea.Nota}</Card.Text>
                 </Card.Body>
             </Card>
         </div>
@@ -101,110 +100,18 @@ function ListaTareas({ Categoria, tareasAMostrar, tareas, setTareas, setTareasFa
     )
 }
 
-
-/*function Tarea({ tarea }) {
-    const [, ref] = useDrag(() => ({
-        type: 'Tarea',
-        item: { id: tarea.Id },
-    }));
-
-    return (
-        <div ref={ref}>
-            <Card className="card text-center" style={{ width: '18rem' }}>
-                <Card.Img className="fotoCard" variant="top" src={tarea.Foto} />
-                <Card.Body className="d-flex flex-column align-items-center">
-                    <Card.Title className="tituloCard">{tarea.Titulo}</Card.Title>
-                    <Card.Text className="descCard">{tarea.Descripcion}</Card.Text>
-                </Card.Body>
-            </Card>
-        </div>
-    );
-}
-
-function ListaTareas({ Categoria, tareasAMostrar, tareas, setTareas }) {
-    const handleDrop = (draggedId, category) => {
-        const draggedSchedule = tareas.find(tarea => tarea.Id === draggedId);
-
-        if (draggedSchedule) {
-            draggedSchedule.Categoria = category;
-            setTareas((tasks) => {
-                const updatedTasks = tasks.map(task => {
-                    if (task.Id === draggedId) {
-                        return { ...task, Categoria: category };
-                    }
-                    return task;
-                });
-                return updatedTasks;
-            });
-        }
-    };
-
-    const [, redDrop] = useDrop(() => ({
-        accept: 'Tarea',
-        drop: (item) => handleDrop(item.id, 'red'),
-    }));
-
-    const [, yellowDrop] = useDrop(() => ({
-        accept: 'Tarea',
-        drop: (item) => handleDrop(item.id, 'yellow'),
-    }));
-
-    const [, greenDrop] = useDrop(() => ({
-        accept: 'Tarea',
-        drop: (item) => handleDrop(item.id, 'green'),
-    }));
-
-    return (
-        <Container role={"Lista"}>
-            <h1>{Categoria}</h1>
-            <Row>
-                <Col xs={4}>
-                    <div ref={redDrop}>
-                        <h2>Red</h2>
-                        {tareasAMostrar
-                            .filter(tarea => tarea.Categoria === 'red')
-                            .map(tarea => (
-                                <Tarea key={tarea.Id} tarea={tarea} />
-                            ))}
-                    </div>
-                </Col>
-                <Col xs={4}>
-                    <div ref={yellowDrop}>
-                        <h2>Yellow</h2>
-                        {tareasAMostrar
-                            .filter(tarea => tarea.Categoria === 'yellow')
-                            .map(tarea => (
-                                <Tarea key={tarea.Id} tarea={tarea} />
-                            ))}
-                    </div>
-                </Col>
-                <Col xs={4}>
-                    <div ref={greenDrop}>
-                        <h2>Green</h2>
-                        {tareasAMostrar.filter(tarea => tarea.Categoria === 'green')
-                            .map(tarea => (
-                                <Tarea key={tarea.Id} tarea={tarea} />
-                            ))}
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-    );
-}*/
-
 const Home = () => {
     const navigate = useNavigate();
     const [tareas, setTareas] = useState([]);
     const [tareasVerdes, setTareasVerdes] = useState([]);
     const [tareasAmarillas, setTareasAmarillas] = useState([]);
     const [tareasRojas, setTareasRojas] = useState([]);
-
     const { state } = useLocation();
 
-    console.log("HOME", state.usuario);
-
+    console.log("HOME", state && state.usuario);
     return (
         <>
+            <Navbarr></Navbarr>
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Abrir menú

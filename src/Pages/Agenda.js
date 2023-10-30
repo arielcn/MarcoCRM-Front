@@ -3,12 +3,31 @@ import { useState, useContext } from "react";
 import UsuarioContext from "../context/UsuarioContext";
 import { Link } from "react-router-dom";
 import Navbarr from "./Navbar";
-import React from 'react';
+import React from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function Agenda() {
   const [notaSeleccionada, setNotaSeleccionada] = useState("");
+  const { usuario, datosAgenda, setDatosAgenda } = useContext(UsuarioContext);
+  const { state } = useLocation();
 
-  const { datosAgenda, setDatosAgenda } = useContext(UsuarioContext);
+  useEffect(() => {
+    console.log(usuario);
+    const usuarioId = usuario.Id;
+    axios
+      .get(`http://localhost:3001/agenda/${usuarioId}`)
+      .then((response) => {
+        console.log(response);
+        const datosAgenda = response.data;
+        setDatosAgenda(datosAgenda);
+        console.log("notas agendadas:", datosAgenda);
+      })
+      .catch((error) => {
+        console.error("Error al obtener notas agendadas:", error);
+      });
+  }, []);
 
   const eliminarNota = (agendaId) => {
     setDatosAgenda(datosAgenda.filter((agenda) => agenda.id !== agendaId));
@@ -42,38 +61,34 @@ function Agenda() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
                       {datosAgenda.map((agenda, index) => (
-                        <a
+                    <tr>
+                        <div
                           key={index}
-                          className={`list-group-item list-group-item-primary ${notaSeleccionada === index ? "active" : ""
-                            }`}
-                          onClick={() => seleccionarNota(index)}
-                          data-bs-toggle="list"
-                          href={`#list-name-${index}`}
-                          role="tab"
-                          aria-controls={`list-name-${index}`}
+                          className={`list-group-item list-group-item-primary ${
+                            notaSeleccionada === index ? "active" : ""
+                          }`}
                         >
-                          <tr>
-                            <th>{agenda.NombreCliente}</th>
-                            <th>{agenda.ApellidoCliente}</th>
-                            <th>{agenda.TelefonoCliente}</th>
-                            <th>{agenda.Descripcion}</th>
+                          <div>
+                            <td>
+                              {agenda.NombreCliente} {agenda.ApellidoCliente}
+                            </td>
+                            <td>{agenda.Telefono}</td>
+                            <td>{agenda.Descripcion}</td>
                             <button
                               className="btn btn-danger"
-                              onClick={() => eliminarNota(agenda.id)}
+                              onClick={() => eliminarNota(agenda.Id)}
                             >
                               Eliminar
                             </button>
-                          </tr>
-                          <td className="text-center">{agenda.Fecha}</td>
-                        </a>
-                      ))}
+                          </div>
+                          <div className="text-center">{agenda.Fecha}</div>
+                        </div>
                     </tr>
+                      ))}
                   </tbody>
                 </Table>
               </td>
-
             </tr>
           </tbody>
         </Table>
