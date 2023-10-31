@@ -1,4 +1,4 @@
-import Navbarr from './Navbar';
+import NavbarHome from './Navbar';
 import './Reuniones.css';
 import React, { useState } from "react";
 
@@ -20,7 +20,7 @@ const Reuniones = () => {
 
   return (
     <div class="container px-4">
-      <Navbarr></Navbarr>
+      <NavbarHome></NavbarHome>
       <div class="row gx-5">
         <section class="col-4">
           <div class="p-3">

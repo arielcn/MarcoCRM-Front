@@ -2,7 +2,7 @@ import { Navbar, Table } from "react-bootstrap";
 import { useState, useContext } from "react";
 import UsuarioContext from "../context/UsuarioContext";
 import { Link } from "react-router-dom";
-import Navbarr from "./Navbar";
+import NavbarHome from "./Navbar";
 import React from "react";
 import { useEffect } from "react";
 import axios from "axios";
@@ -39,7 +39,7 @@ function Agenda() {
 
   return (
     <>
-      <Navbarr></Navbarr>
+      <NavbarHome></NavbarHome>
       <div className="container mt-5">
         <h1 className="text-white mb-3">Agenda</h1>
         <Table striped bordered hover variant="dark">
