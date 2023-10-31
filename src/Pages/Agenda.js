@@ -16,8 +16,8 @@ function Agenda() {
   useEffect(() => {
     console.log(usuario);
     const usuarioId = usuario.Id;
-    axios
-      .get(`http://localhost:3001/agenda/${usuarioId}`)
+    
+    axios.get(`http://localhost:3001/agenda/${usuarioId}`)
       .then((response) => {
         console.log(response);
         const datosAgenda = response.data;
@@ -61,7 +61,7 @@ function Agenda() {
                     </tr>
                   </thead>
                   <tbody>
-                      {datosAgenda.map((agenda, index) => (
+                      {datosAgenda && datosAgenda.map((agenda, index) => (
                     <tr>
                         <div
                           key={index}
