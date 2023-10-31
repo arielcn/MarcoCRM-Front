@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 
-const Navbarr = () => {
+const NavbarHome = () => {
     return (
         <Navbar className='container w-50 mt-5 rounded-pill' bg="light" expand="lg">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -20,4 +20,4 @@ const Navbarr = () => {
 
 }
 
-export default Navbarr;
+export default NavbarHome;

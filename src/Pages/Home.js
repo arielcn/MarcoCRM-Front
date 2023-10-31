@@ -8,7 +8,7 @@ import React from 'react';
 import { Row, Col, Container  } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbarr from './Navbar';
+import NavbarHome from './Navbar';
 
 
 function Tarea({ tarea, onDrop }) {
@@ -111,7 +111,7 @@ const Home = () => {
     console.log("HOME", state && state.usuario);
     return (
         <>
-            <Navbarr></Navbarr>
+            <NavbarHome></NavbarHome>
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Abrir menú
