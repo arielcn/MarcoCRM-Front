@@ -112,6 +112,7 @@ const Home = () => {
     return (
         <>
             <NavbarHome></NavbarHome>
+            <div className='container text-center'>
             <Dropdown>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Abrir menú
@@ -131,7 +132,7 @@ const Home = () => {
                     <ListaTareas Categoria={"No realizado"} tareasAMostrar={tareasRojas} tareas={tareasRojas} setTareasRojas={setTareasRojas} tareasRojas={tareasRojas}></ListaTareas>
                 </Container>
             </DndProvider>
-
+            </div>
         </>
     );
 
