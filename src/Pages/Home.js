@@ -113,18 +113,6 @@ const Home = () => {
         <>
             <NavbarHome></NavbarHome>
             <div className='container text-center'>
-            <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Abrir menú
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => navigate("/agenda")}>Agenda</Dropdown.Item>
-                    <Dropdown.Item onClick={() => navigate("/listado-cliente")}>Lista clientes</Dropdown.Item>
-                    <Dropdown.Item onClick={() => navigate("/tarea")}>Nueva tarea</Dropdown.Item>
-                    <Dropdown.Item onClick={() => navigate("/reuniones")}>Reuniones</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
             <DndProvider backend={HTML5Backend}>
                 <Container style={{ display: "flex", flexDirection: "row" }}>
                     <ListaTareas Categoria={"Hecho"} tareasAMostrar={tareasVerdes} tareas={tareasVerdes} setTareas={setTareasVerdes} setTareasVerdes={setTareasVerdes} ></ListaTareas>
