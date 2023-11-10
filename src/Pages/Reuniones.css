@@ -4,11 +4,11 @@
     color: antiquewhite;
 }
 
-.fechaHora div{
+.fechaHora div {
     width: 70%;
 }
 
-.fechaHora img{
+.fechaHora img {
     width: 30%;
     height: fit-content;
 }
@@ -18,14 +18,38 @@
 }
 
 .notas input {
-    width: 100%;
+    width: 90%;
     margin: 10px;
+
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(14, 14, 16);
+    background: #dee1e2;
+    display: block;
+    height: 36px;
+
+    :hover {
+        border-color: #ccc;
+    }
+
+    :focus {
+        border-color: #9147ff;
+        background: #fff;
+    }
+
+
 }
 
 .text-original {
-    color: black; /* Color original del texto */
-  }
-  
-  .text-blue {
-    color: blue; /* Color azul para el texto */
-  }
+    color: black;
+    /* Color original del texto */
+}
+
+.text-blue {
+    color: blue;
+    /* Color azul para el texto */
+}

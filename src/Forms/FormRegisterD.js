@@ -10,8 +10,8 @@ const FormRegisterD = () => {
     const [contraseña, setContraseña] = useState("");
     const [mail, setMail] = useState("");
     const [codigoEmpresa, setCodigoEmpresa] = useState("");
-    const [cuit, setCuit] = useState("")
-    const [error, setError] = useState('')
+    const [cuit, setCuit] = useState("");
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (event) => {

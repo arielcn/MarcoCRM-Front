@@ -1,14 +1,55 @@
 import NavbarHome from './Navbar';
 import './Reuniones.css';
 import React, { useState } from "react";
+import axios from 'axios';
 
 
 const Reuniones = () => {
   const [Clickeado, setClickeado] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [hora, setHora] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [formato, setFormato] = useState("");
+  const [titulo, setTitulo] = useState("");
+  const [imagen, setImagen] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); //Prevent page reload
+
+    let datos = {
+      Hora: hora,
+      Fecha: fecha,
+      Formato: formato,
+      Titulo: titulo,
+      Imagen: imagen,
+    };
+
+    axios.post("http://localhost:3001/reuniones", { datos })
+      .then((response) => {
+        console.log(response.status, response.data.token);
+        //navigate("/");
+      })
+      .catch((err) => {
+        console.log("ERROR!", err);
+      });
+  }
 
   const handleClickeado = (cardId) => {
     setSelectedCard(cardId);
+    switch (cardId) {
+      case 1:
+        setFormato("Llamada");
+        break;
+      case 2:
+        setFormato("Presencial");
+        break;
+      case 3:
+        setFormato("Whatsapp");
+        break;
+      case 4:
+        setFormato("Videocall");
+        break;
+    }
   };
 
   const isCardSelected = (cardId) => {
@@ -39,14 +80,14 @@ const Reuniones = () => {
                   </div>
                 </div>
                 <div className="card mb-3 col-sm-5" id="cardFormato">
-                  <img src="../../gmail.png" height="100%" className="card-img-top" alt="" />
+                  <img src="../../presencial.jpg" height="100%" className="card-img-top" alt="" />
                   <div className="card-body">
                     <h5
                       className={`card-title ${isCardSelected(2) ? "text-blue" : "text-original"}`}
                       onClick={() => handleClickeado(2)}
                       style={{ cursor: "pointer" }}
                     >
-                      Mail
+                      Presencial
                     </h5>
                   </div>
                 </div>
@@ -70,7 +111,7 @@ const Reuniones = () => {
                       onClick={() => handleClickeado(4)}
                       style={{ cursor: "pointer" }}
                     >
-                      Videollamada
+                      Videocall
                     </h5>
                   </div>
                 </div>
@@ -79,8 +120,8 @@ const Reuniones = () => {
                   <img src='../../reloj.png' alt=''></img>
                   <div>
                     <h3>Fecha y hora</h3>
-                    <label>Fecha: <input type='date'></input></label>
-                    <label>Hora: <input type='time'></input></label>
+                    <label>Fecha: <input type='date' onChange={setFecha}></input></label>
+                    <label>Hora: <input type='time' onChange={setHora}></input></label>
                   </div>
                 </div>
               </div>
@@ -90,6 +131,7 @@ const Reuniones = () => {
           <section class="col-8">
             <div class="p-3 text-white">
               <h1>Título de la reunion</h1>
+              <input type='text' placeholder='titulo' onChange={setTitulo}></input>
             </div>
             <div className='row'>
               <div className='col-6 notas text-white'>
