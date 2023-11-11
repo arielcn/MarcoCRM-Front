@@ -1,129 +1,108 @@
-import Dropdown from 'react-bootstrap/Dropdown';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useDrag, useDrop } from 'react-dnd';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Card } from 'react-bootstrap';
-import React from 'react';
-import { Row, Col, Container  } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarHome from './Navbar';
-
-
-function Tarea({ tarea, onDrop }) {
-    const navigate = useNavigate();
-    const [tareas, setTareas] = useState([]);
-    const [{ isDragging }, ref] = useDrag(() => ({
-        type: 'Tarea',
-        item: { id: tarea.Id },
-        collect: (monitor) => ({
-            isDragging: monitor.isDragging(),
-        })
-    }))
-
-    useEffect(() => {
-        axios.get('http://localhost:3001/notas/1')
-            .then((response) => {
-                console.log("notas:", response)
-                const datosTareas = response.data;
-                setTareas(datosTareas);
-                console.log(datosTareas)
-            })
-            .catch((error) => {
-                console.error("Error al obtener notas:", error);
-            });
-
-    }, []);
-
-    return (
-        <div ref={ref} style={{ opacity: isDragging ? 0.5 : 1 }}>
-            <Card className="card text-center" style={{ width: '18rem' }}>
-                <Card.Body className="d-flex flex-column align-items-center">
-                    <Card.Text className="descCard">{tarea.Nota}</Card.Text>
-                </Card.Body>
-            </Card>
-        </div>
-    );
-}
-
-function ListaTareas({ Categoria, tareasAMostrar, tareas, setTareas, setTareasFavoritos }) {
-    const handleDrop = (draggedId) => {
-        const draggedSchedule = tareas.find(tarea => tarea.Id === draggedId);
-
-        if (typeof draggedSchedule !== "undefined") {
-            // Cambiar el valor Favoritos a true
-            draggedSchedule.Favorito = true;
-            // Mover el tarea a la lista de tareas favoritos
-            setTareas((tareas) => {
-                const state = tareas.filter(tarea => tarea.Id !== draggedId);
-                return state;
-            });
-            setTareasFavoritos((tareasFavoritos) => {
-                const state = [...tareasFavoritos, draggedSchedule];
-                return state;
-            });
-        } else {
-            draggedSchedule.Favorito = false;
-
-            setTareasFavoritos((tareasFavoritos) => {
-                const state = tareasFavoritos.filter(tarea => tarea.Id !== draggedId);
-                return state;
-            });
-            setTareas((tareas) => {
-                const state = [...tareas, draggedSchedule];
-                return state;
-            });
-            // Lógica para otro destino (por ejemplo, la sección original)
-        }
-    };
-
-
-    const [, drop] = useDrop(() => ({
-        // The type (or types) to accept - strings or symbols
-        accept: 'Tarea',
-        // Props to collect
-        drop: (item) => handleDrop(item.id),
-    }))
-
-    return (
-        <Container ref={drop} role={"Lista"}>
-            <h1>{Categoria}</h1>
-            <Row>
-                {tareasAMostrar.map(tarea => (
-                    <Col key={tarea.id} xs={12} sm={6} md={4}>
-                        <Tarea tarea={tarea} onDrop={() => handleDrop(tarea.Id)} />
-                    </Col>
-                ))}
-            </Row>
-        </Container>
-    )
-}
+import { Card, Col, Modal, Row } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 
 const Home = () => {
     const navigate = useNavigate();
     const [tareas, setTareas] = useState([]);
-    const [tareasVerdes, setTareasVerdes] = useState([]);
-    const [tareasAmarillas, setTareasAmarillas] = useState([]);
-    const [tareasRojas, setTareasRojas] = useState([]);
-    const { state } = useLocation();
+    const [showModal, setShowModal] = useState(false);
+    const [tareaSeleccionada, setTareaSeleccionada] = useState(null);
 
-    console.log("HOME", state && state.usuario);
+    useEffect(() => {
+        fetchTareas();
+    }, []);
+
+    const fetchTareas = () => {
+        axios.get('http://localhost:3001/tarea')
+            .then(response => {
+                const tareasResponse = response.data.tareas;
+                console.log("tareas:", tareasResponse);
+                setTareas([...tareasResponse]);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
+    const fetchTareaInfo = (id) => {
+        axios.get(`http://localhost:3001/tarea${id}`)
+            .then(response => {
+                console.log(response.data);
+                navigate(`/tarea/${id}`);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+    };
+    const openModal = (tarea) => {
+        setTareaSeleccionada(tarea);
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const cambiarEstadoTarea = (id, nuevoEstado) => {
+        // Lógica para actualizar el estado de la tarea en el backend
+        // Puedes usar axios.put o axios.patch para enviar la actualización al servidor
+        // Recuerda actualizar el estado local (setTareas) una vez que se confirme la actualización en el servidor
+    };
+
+    const tareasVerdes = (tareas || []).filter(tarea => tarea.color === 'verde');
+    const tareasAmarillas = (tareas || []).filter(tarea => tarea.color === 'amarillo');
+    const tareasRojas = (tareas || []).filter(tarea => tarea.color === 'rojo');
+
     return (
         <>
             <NavbarHome></NavbarHome>
-            <div className='container text-center'>
-            <DndProvider backend={HTML5Backend}>
-                <Container style={{ display: "flex", flexDirection: "row" }}>
-                    <ListaTareas Categoria={"Hecho"} tareasAMostrar={tareasVerdes} tareas={tareasVerdes} setTareas={setTareasVerdes} setTareasVerdes={setTareasVerdes} ></ListaTareas>
-                    <ListaTareas Categoria={"En proceso "} tareasAMostrar={tareasAmarillas} tareas={tareasAmarillas} setTareasAmarillas={setTareasAmarillas} tareasAmarillas={tareasAmarillas}></ListaTareas>
-                    <ListaTareas Categoria={"No realizado"} tareasAMostrar={tareasRojas} tareas={tareasRojas} setTareasRojas={setTareasRojas} tareasRojas={tareasRojas}></ListaTareas>
-                </Container>
-            </DndProvider>
+            <div className="container text-center">
+                <Row xs={1} md={2} className="g-4">
+                    {tareas.map((tarea) => (
+                        <Col md={3} key={tarea.Id}>
+                            <Card className="card text-center">
+                                <Card.Body className="d-flex flex-column align-items-center">
+                                    <Card.Title className="tituloCard">{tarea.Titulo}</Card.Title>
+                                    <Card.Text className="descCard">{tarea.Nota}</Card.Text>
+                                    <button className="detail-button" onClick={() => openModal(tarea)}>
+                                        Más info
+                                    </button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             </div>
-        </>
-    );
 
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Detalles</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    {/* Display project details from the selectedProject */}
+                    {tareaSeleccionada && (
+                        <div>
+                            <h4>Nombre: {tareaSeleccionada.Titulo}</h4>
+                            <p>Descripción: {tareaSeleccionada.Nota}</p>
+                            <p>Fecha: {tareaSeleccionada.Fecha}</p>
+                            {/* Display more project details as needed */}
+                        </div>
+                    )}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeModal}>
+                        Cerrar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+
+        </>
+    )
 }
 
 export default Home;
