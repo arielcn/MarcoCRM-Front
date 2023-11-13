@@ -3,23 +3,39 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarHome from './Navbar';
 import { Card, Col, Modal, Row } from 'react-bootstrap';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { useContext } from 'react';
+import UsuarioContext from '../context/UsuarioContext';
+import './Home.css'
 
 const Home = () => {
     const navigate = useNavigate();
     const [tareas, setTareas] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [tareaSeleccionada, setTareaSeleccionada] = useState(null);
+    const [tareasVerdes, setTareasVerdes] = useState([])
+    const [tareasAmarillas, setTareasAmarillas] = useState([])
+    const [tareasRojas, setTareasRojas] = useState([])
+
+    const userContext = useContext(UsuarioContext);
+
+
 
     useEffect(() => {
-        fetchTareas();
+        fetchTareas(userContext.usuario.Id);
     }, []);
 
-    const fetchTareas = () => {
-        axios.get('http://localhost:3001/tarea')
+    useEffect(() => {
+        setTareasVerdes([...tareas.filter(tarea => tarea.Estado === 'Realizado')]);
+        setTareasAmarillas([...tareas.filter(tarea => tarea.Estado === 'Por realizar')]);
+        setTareasRojas([...tareas.filter(tarea => tarea.Estado === 'Urgente')]);
+    }, [tareas]);
+
+    const fetchTareas = (idUsuario) => {
+        axios.get(`http://localhost:3001/tareas/${idUsuario}`)
             .then(response => {
-                const tareasResponse = response.data.tareas;
-                console.log("tareas:", tareasResponse);
+                const tareasResponse = response.data;
+                console.log("sus", response.data)
                 setTareas([...tareasResponse]);
             })
             .catch(error => {
@@ -28,7 +44,7 @@ const Home = () => {
     };
 
     const fetchTareaInfo = (id) => {
-        axios.get(`http://localhost:3001/tarea${id}`)
+        axios.get(`http://localhost:3001/tareas/${id}`)
             .then(response => {
                 console.log(response.data);
                 navigate(`/tarea/${id}`);
@@ -48,34 +64,99 @@ const Home = () => {
     };
 
     const cambiarEstadoTarea = (id, nuevoEstado) => {
-        // Lógica para actualizar el estado de la tarea en el backend
-        // Puedes usar axios.put o axios.patch para enviar la actualización al servidor
-        // Recuerda actualizar el estado local (setTareas) una vez que se confirme la actualización en el servidor
+        axios.put(`http://localhost:3001/tareas/${id}`, { estado: nuevoEstado })
+            .then(response => {
+                // Actualizar el estado local con la tarea actualizada
+                const tareaActualizada = response.data;
+                const nuevasTareas = tareas.map(tarea => {
+                    if (tarea.Id === tareaActualizada.Id) {
+                        return tareaActualizada;
+                    }
+                    return tarea;
+                });
+                setTareas(nuevasTareas);
+            })
+            .catch(error => {
+                console.error(error);
+            });
     };
 
-    const tareasVerdes = (tareas || []).filter(tarea => tarea.color === 'verde');
-    const tareasAmarillas = (tareas || []).filter(tarea => tarea.color === 'amarillo');
-    const tareasRojas = (tareas || []).filter(tarea => tarea.color === 'rojo');
 
     return (
         <>
             <NavbarHome></NavbarHome>
             <div className="container text-center">
-                <Row xs={1} md={2} className="g-4">
-                    {tareas.map((tarea) => (
-                        <Col md={3} key={tarea.Id}>
-                            <Card className="card text-center">
-                                <Card.Body className="d-flex flex-column align-items-center">
-                                    <Card.Title className="tituloCard">{tarea.Titulo}</Card.Title>
-                                    <Card.Text className="descCard">{tarea.Nota}</Card.Text>
+                <div className="flex-container">
+                    <div className="column">
+                        <h3>Tareas Realizadas</h3>
+                        {tareasVerdes.map((tarea) => (
+                            <Card key={tarea.Id} className="card">
+                                <Card.Body>
+                                    <Card.Title>{tarea.Titulo}</Card.Title>
+                                    <Card.Text>{tarea.Nota}</Card.Text>
+                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea.Id, 'Realizado')}>
+                                        Realizado
+                                    </Button>
+                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea.Id, 'Por realizar')}>
+                                        Por Realizar
+                                    </Button>
+                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea.Id, 'Urgente')}>
+                                        Urgente
+                                    </Button>
                                     <button className="detail-button" onClick={() => openModal(tarea)}>
                                         Más info
                                     </button>
                                 </Card.Body>
                             </Card>
-                        </Col>
-                    ))}
-                </Row>
+                        ))}
+                    </div>
+                    <div className="column">
+                        <h3>Tareas Por Realizar</h3>
+                        {tareasAmarillas.map((tarea) => (
+                            <Card key={tarea.Id} className="card">
+                                <Card.Body>
+                                    <Card.Title>{tarea.Titulo}</Card.Title>
+                                    <Card.Text>{tarea.Nota}</Card.Text>
+                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea.Id, 'Realizado')}>
+                                        Realizado
+                                    </Button>
+                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea.Id, 'Por realizar')}>
+                                        Por Realizar
+                                    </Button>
+                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea.Id, 'Urgente')}>
+                                        Urgente
+                                    </Button>
+                                    <button className="detail-button" onClick={() => openModal(tarea)}>
+                                        Más info
+                                    </button>
+                                </Card.Body>
+                            </Card>
+                        ))}
+                    </div>
+                    <div className="column">
+                        <h3>Tareas Urgentes</h3>
+                        {tareasRojas.map((tarea) => (
+                            <Card key={tarea.Id} className="card">
+                                <Card.Body>
+                                    <Card.Title>{tarea.Titulo}</Card.Title>
+                                    <Card.Text>{tarea.Nota}</Card.Text>
+                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea.Id, 'Realizado')}>
+                                        Realizado
+                                    </Button>
+                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea.Id, 'Por realizar')}>
+                                        Por Realizar
+                                    </Button>
+                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea.Id, 'Urgente')}>
+                                        Urgente
+                                    </Button>
+                                    <button className="detail-button" onClick={() => openModal(tarea)}>
+                                        Más info
+                                    </button>
+                                </Card.Body>
+                            </Card>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             <Modal show={showModal} onHide={closeModal}>
@@ -83,13 +164,11 @@ const Home = () => {
                     <Modal.Title>Detalles</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* Display project details from the selectedProject */}
                     {tareaSeleccionada && (
                         <div>
                             <h4>Nombre: {tareaSeleccionada.Titulo}</h4>
                             <p>Descripción: {tareaSeleccionada.Nota}</p>
                             <p>Fecha: {tareaSeleccionada.Fecha}</p>
-                            {/* Display more project details as needed */}
                         </div>
                     )}
                 </Modal.Body>
