@@ -10,8 +10,9 @@ import CodigoEmpresa from './Forms/CodigoEmpresa';
 import ListadoCliente from './Listas/ListadoCliente';
 import ListadoVendedor from './Listas/ListadoVendedor';
 import CargarDatosC from './Listas/CargarDatosC';
+import CargarDatosTarea from "./Listas/CargarDatosTarea";
 import Agenda from "./Pages/Agenda";
-import Tarea from "./Pages/Tarea";
+import CargarDatosReunion from "./Listas/CargarDatosReunion";
 import Reuniones from "./Pages/Reuniones";
 import CargarDatosAgenda from "./Listas/CargarDatosAgenda";
 import ForgotPwd from "./Forms/ForgotPwd";
@@ -23,6 +24,7 @@ function App() {
   const [mailUsuario, setMailUsuario] = useState("");
   const [usuario, setUsuario] = useState();
   const [datosAgenda, setDatosAgenda] = useState([]);
+  const [datosReunion, setDatosReunion] = useState([]);
 
   useEffect(() => {
     console.log("MailUsuarioEnApp", mailUsuario);
@@ -35,7 +37,7 @@ function App() {
  
   return (
     <BrowserRouter>
-      <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario, usuario, setUsuario, datosAgenda, setDatosAgenda}}>
+      <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario, usuario, setUsuario, datosAgenda, setDatosAgenda, datosReunion, setDatosReunion}}>
       <Routes>
           <Route index element={<FormLogin />}></Route>
         <Route path="/" element={<Layout />}>
@@ -45,13 +47,14 @@ function App() {
           <Route path="/registro-d" element={<FormRegisterD />}></Route>
           <Route path="/registro-v" element={<FormRegisterV />}></Route>
           <Route path="/cargar-datos-c" element={<CargarDatosC />}></Route>
+          <Route path="/cargar-datos-tarea" element={<CargarDatosTarea />}></Route>
           <Route path="/codigo-empresa" element={<CodigoEmpresa />}></Route>
           <Route path="/agenda" element={<Agenda />}></Route>
           <Route path="/listado-cliente" element={<ListadoCliente />}></Route>
           <Route path="/listado-vendedor" element={<ListadoVendedor />}></Route>
-          <Route path="/tarea" element={<Tarea />}></Route>
           <Route path="/reuniones" element={<Reuniones />}></Route>
           <Route path="/cargar-datos-agenda" element={<CargarDatosAgenda />}></Route>
+          <Route path="/cargar-datos-reunion" element={<CargarDatosReunion />}></Route>
           <Route path="/editar-perfil" element={<EditarPerfil />}></Route>
           <Route path="*" element={<h1 className="text-center mt-2 text-white">404: Page not found</h1>}></Route>
         </Route>

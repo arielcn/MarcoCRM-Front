@@ -11,7 +11,6 @@ const NavbarHome = () => {
                     <Nav.Link className='me-5' as={Link} to="/agenda">Agenda</Nav.Link>
                     <Nav.Link className='me-5' as={Link} to="/reuniones">Reuniones</Nav.Link>
                     <Nav.Link className='me-5' as={Link} to="/listado-cliente">Clientes</Nav.Link>
-                    <Nav.Link className='me-5' as={Link} to="/agenda">Analitica</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

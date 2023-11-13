@@ -16,10 +16,10 @@ function Agenda() {
   useEffect(() => {
     console.log(usuario);
     const usuarioId = usuario.Id;
-    
+
     axios.get(`http://localhost:3001/agenda/${usuarioId}`)
       .then((response) => {
-        console.log(response);
+        console.log("agenda", response.data);
         const datosAgenda = response.data;
         setDatosAgenda(datosAgenda);
         console.log("notas agendadas:", datosAgenda);
@@ -30,7 +30,13 @@ function Agenda() {
   }, []);
 
   const eliminarNota = (agendaId) => {
-    setDatosAgenda(datosAgenda.filter((agenda) => agenda.id !== agendaId));
+    axios.delete(`http://localhost:3001/agenda/${agendaId}`)
+      .then(response => {
+        setDatosAgenda(datosAgenda.filter((agenda) => agenda.Id !== agendaId));
+      })
+      .catch(error => {
+        console.error("Error al eliminar", error);
+      });
   };
 
   const seleccionarNota = (index) => {
@@ -45,51 +51,35 @@ function Agenda() {
         <Table striped bordered hover variant="dark">
           <thead>
             <tr>
-              <th>Notas</th>
+              <th>Cliente</th>
+              <th>Teléfono</th>
+              <th>Descripción</th>
               <th>Fecha del contacto</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <Table striped variant="dark">
-                  <thead>
-                    <tr>
-                      <th>Cliente</th>
-                      <th>Telefono</th>
-                      <th>Descripcion</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      {datosAgenda && datosAgenda.map((agenda, index) => (
-                    <tr>
-                        <div
-                          key={index}
-                          className={`list-group-item list-group-item-primary ${
-                            notaSeleccionada === index ? "active" : ""
-                          }`}
-                        >
-                          <div>
-                            <td>
-                              {agenda.NombreCliente} {agenda.ApellidoCliente}
-                            </td>
-                            <td>{agenda.Telefono}</td>
-                            <td>{agenda.Descripcion}</td>
-                            <button
-                              className="btn btn-danger"
-                              onClick={() => eliminarNota(agenda.Id)}
-                            >
-                              Eliminar
-                            </button>
-                          </div>
-                          <div className="text-center">{agenda.Fecha}</div>
-                        </div>
-                    </tr>
-                      ))}
-                  </tbody>
-                </Table>
-              </td>
-            </tr>
+            {datosAgenda && datosAgenda.map((agenda, index) => (
+              <tr key={index}>
+                <td>
+                  {agenda.NombreCliente} {agenda.ApellidoCliente}
+                </td>
+                <td>
+                  {agenda.Telefono}
+                </td>
+                <td>
+                  {agenda.Descripcion}
+                </td>
+                <td>
+                  {new Date(agenda.Fecha).toLocaleDateString()}
+                </td>
+                <td>
+                  <button className="btn btn-danger" onClick={() => eliminarNota(agenda.Id)}>
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
         <div style={{ textAlign: "center" }}>

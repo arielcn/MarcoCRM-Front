@@ -26,6 +26,8 @@ const Home = () => {
     }, []);
 
     useEffect(() => {
+        console.log("JOEMAMA", tareas);
+
         setTareasVerdes([...tareas.filter(tarea => tarea.Estado === 'Realizado')]);
         setTareasAmarillas([...tareas.filter(tarea => tarea.Estado === 'Por realizar')]);
         setTareasRojas([...tareas.filter(tarea => tarea.Estado === 'Urgente')]);
@@ -63,18 +65,27 @@ const Home = () => {
         setShowModal(false);
     };
 
-    const cambiarEstadoTarea = (id, nuevoEstado) => {
-        axios.put(`http://localhost:3001/tareas/${id}`, { estado: nuevoEstado })
+    const cambiarEstadoTarea = (tarea, newEstado) => {
+        console.log("TAREA, CAMBIARESTADO", tarea);
+        axios.put(`http://localhost:3001/tareas/${tarea.Id}`, { ...tarea, "Estado": newEstado })
             .then(response => {
-                // Actualizar el estado local con la tarea actualizada
                 const tareaActualizada = response.data;
+                console.log("TareaActualizada", tareaActualizada);
                 const nuevasTareas = tareas.map(tarea => {
                     if (tarea.Id === tareaActualizada.Id) {
                         return tareaActualizada;
                     }
+                    console.log("ID de la tarea:", tarea.Id);
+                    console.log("Nuevo estado:", newEstado);
                     return tarea;
+                    
                 });
-                setTareas(nuevasTareas);
+                setTareas([...nuevasTareas]);
+    
+                // Clasificar las tarjetas en las columnas adecuadas
+                setTareasVerdes(nuevasTareas.filter(tarea => tarea.Estado === 'Realizado'));
+                setTareasAmarillas(nuevasTareas.filter(tarea => tarea.Estado === 'Por realizar'));
+                setTareasRojas(nuevasTareas.filter(tarea => tarea.Estado === 'Urgente'));
             })
             .catch(error => {
                 console.error(error);
@@ -94,13 +105,13 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title>{tarea.Titulo}</Card.Title>
                                     <Card.Text>{tarea.Nota}</Card.Text>
-                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea.Id, 'Realizado')}>
+                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea, 'Realizado')}>
                                         Realizado
                                     </Button>
-                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea.Id, 'Por realizar')}>
+                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea, 'Por realizar')}>
                                         Por Realizar
                                     </Button>
-                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea.Id, 'Urgente')}>
+                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea, 'Urgente')}>
                                         Urgente
                                     </Button>
                                     <button className="detail-button" onClick={() => openModal(tarea)}>
@@ -117,13 +128,13 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title>{tarea.Titulo}</Card.Title>
                                     <Card.Text>{tarea.Nota}</Card.Text>
-                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea.Id, 'Realizado')}>
+                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea, 'Realizado')}>
                                         Realizado
                                     </Button>
-                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea.Id, 'Por realizar')}>
+                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea, 'Por realizar')}>
                                         Por Realizar
                                     </Button>
-                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea.Id, 'Urgente')}>
+                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea, 'Urgente')}>
                                         Urgente
                                     </Button>
                                     <button className="detail-button" onClick={() => openModal(tarea)}>
@@ -140,13 +151,13 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title>{tarea.Titulo}</Card.Title>
                                     <Card.Text>{tarea.Nota}</Card.Text>
-                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea.Id, 'Realizado')}>
+                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea, 'Realizado')}>
                                         Realizado
                                     </Button>
-                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea.Id, 'Por realizar')}>
+                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea, 'Por realizar')}>
                                         Por Realizar
                                     </Button>
-                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea.Id, 'Urgente')}>
+                                    <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea, 'Urgente')}>
                                         Urgente
                                     </Button>
                                     <button className="detail-button" onClick={() => openModal(tarea)}>
@@ -179,7 +190,7 @@ const Home = () => {
                 </Modal.Footer>
             </Modal>
 
-
+            <button onClick={() => { navigate('/cargar-datos-tarea') }} className="btn btn-secondary" type="submit">Crear tarea</button>
         </>
     )
 }
