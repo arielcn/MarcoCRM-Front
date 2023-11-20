@@ -17,6 +17,7 @@ import Reuniones from "./Pages/Reuniones";
 import CargarDatosAgenda from "./Listas/CargarDatosAgenda";
 import ForgotPwd from "./Forms/ForgotPwd";
 import EditarPerfil from "./Forms/EditarPerfil";
+import Perfil from "./Pages/Perfil";
 import { useEffect, useState } from "react";
 import UsuarioContext from "./context/UsuarioContext";
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="/cargar-datos-agenda" element={<CargarDatosAgenda />}></Route>
           <Route path="/cargar-datos-reunion" element={<CargarDatosReunion />}></Route>
           <Route path="/editar-perfil" element={<EditarPerfil />}></Route>
+          <Route path="/perfil" element={<Perfil />}></Route>
           <Route path="*" element={<h1 className="text-center mt-2 text-white">404: Page not found</h1>}></Route>
         </Route>
       </Routes>

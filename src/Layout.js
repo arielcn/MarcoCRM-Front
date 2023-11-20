@@ -11,7 +11,7 @@ const Layout = () => {
     };
 
     const click = () => {
-        navigate('/editar-perfil')
+        navigate('/perfil')
     }
     return (
         <>
