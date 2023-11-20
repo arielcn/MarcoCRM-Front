@@ -191,6 +191,13 @@ const Home = () => {
             </Modal>
 
             <button onClick={() => { navigate('/cargar-datos-tarea') }} className="btn btn-secondary" type="submit">Crear tarea</button>
+            {userContext.usuario.Id === 1 && (
+                <button onClick={() => navigate('/listado-tareas-empresa')} className="btn btn-primary" type="submit">
+                    Ver tareas de clientes
+                </button>
+            )}
+
+
         </>
     )
 }
