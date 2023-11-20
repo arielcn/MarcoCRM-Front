@@ -9,6 +9,7 @@ import FormRegisterV from './Forms/FormRegisterV';
 import CodigoEmpresa from './Forms/CodigoEmpresa';
 import ListadoCliente from './Listas/ListadoCliente';
 import ListadoVendedor from './Listas/ListadoVendedor';
+import ListadoTareasEmpresa from "./Listas/ListadoTareasEmpresa";
 import CargarDatosC from './Listas/CargarDatosC';
 import CargarDatosTarea from "./Listas/CargarDatosTarea";
 import Agenda from "./Pages/Agenda";
@@ -52,6 +53,7 @@ function App() {
           <Route path="/codigo-empresa" element={<CodigoEmpresa />}></Route>
           <Route path="/agenda" element={<Agenda />}></Route>
           <Route path="/listado-cliente" element={<ListadoCliente />}></Route>
+          <Route path="/listado-tareas-empresa" element={<ListadoTareasEmpresa />}></Route>
           <Route path="/listado-vendedor" element={<ListadoVendedor />}></Route>
           <Route path="/reuniones" element={<Reuniones />}></Route>
           <Route path="/cargar-datos-agenda" element={<CargarDatosAgenda />}></Route>

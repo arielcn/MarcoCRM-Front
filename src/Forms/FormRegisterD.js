@@ -9,6 +9,7 @@ const FormRegisterD = () => {
     const [apellido, setApellido] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [mail, setMail] = useState("");
+    const [nombreEmpresa, setNombreEmpresa] = useState("");
     const [codigoEmpresa, setCodigoEmpresa] = useState("");
     const [cuit, setCuit] = useState("");
     const [error, setError] = useState('');
@@ -22,6 +23,7 @@ const FormRegisterD = () => {
             Apellido: apellido,
             Contraseña: contraseña,
             Mail: mail,
+            NombreEmpresa: nombreEmpresa,
             CodigoEmpresa: codigoEmpresa,
             Cuit: cuit,
             fkRol: 1,
@@ -74,7 +76,11 @@ const FormRegisterD = () => {
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
                     <Form.Control type="password" placeholder="Contraseña" required value={contraseña} onChange={(e => setContraseña(e.target.value))} />
-                    <p className="text-white">Mínimo 8 caracteres</p>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formGridAddress2">
+                    <Form.Label className="fs-4 text-white"><b>Nombre de la empresa</b></Form.Label>
+                    <Form.Control type="text" placeholder="Nombre empresa" required value={nombreEmpresa} onChange={(e => setNombreEmpresa(e.target.value))} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress1">

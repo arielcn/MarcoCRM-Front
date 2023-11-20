@@ -41,7 +41,7 @@ const CargarDatosTarea = () => {
                 console.log("ERROR!", err);
             });
     }
-    const   handleEstadoChange = (e) => {
+    const handleEstadoChange = (e) => {
         const selectedEstado = e.target.text; // Obtener el estado seleccionado
         setEstado(selectedEstado); // Actualizar el estado seleccionado
     };
@@ -61,14 +61,18 @@ const CargarDatosTarea = () => {
                         <Form.Control type="text" placeholder="Descripción" required value={nota} onChange={(e => setNota(e.target.value))} />
                     </Form.Group>
                 </Row>
+
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <DropdownButton id="dropdown-basic-button" title="Estado de la tarea">
-                        <Dropdown.Item onClick={handleEstadoChange}>Realizado</Dropdown.Item>
-                        <Dropdown.Item onClick={handleEstadoChange}>Por realizar</Dropdown.Item>
-                        <Dropdown.Item onClick={handleEstadoChange}>Urgente</Dropdown.Item>
-                        <Dropdown.Item active>{estado ? `Seleccionado: ${estado}` : 'Seleccione un estado'}</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleEstadoChange('Realizado')}>Realizado</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleEstadoChange('Por realizar')}>Por realizar</Dropdown.Item>
+                        <Dropdown.Item onClick={() => handleEstadoChange('Urgente')}>Urgente</Dropdown.Item>
                     </DropdownButton>
+                    {estado && (
+                        <p>Seleccionado: {estado}</p>
+                    )}
                 </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formGridAddress1">
                     <Form.Label className="fs-4 text-white"><b>Fecha</b></Form.Label>
                     <Form.Control type="date" placeholder="Descripción" required value={fecha} onChange={(e => setFecha(e.target.value))} />
