@@ -16,12 +16,10 @@ const Perfil = () => {
 
     return (
         <div class="container text-white">
-            <div class="row">
-                <h1>Mi Perfil</h1>
+                <h1 className="mt-5">Mi Perfil</h1>
                 <h2>{usuario.nombre} {usuario.apellido}</h2>
                 <h3>{usuario.cuit}</h3>
                 <button onClick={() => {navigate('/editar-perfil')}} className="mt-4 btn btn-warning">Editar Perfil</button>
-            </div>
         </div>
     );
 };

@@ -10,6 +10,8 @@ const EditarPerfil = () => {
     const [cuit, setCuit] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const handleSubmit = () => {
         let usuario = {
@@ -20,7 +22,7 @@ const EditarPerfil = () => {
             pass: password
         }
 
-        axios.post('http://localhost:3001/usuario/', usuario)
+        axios.post('http://localhost:3001/usuario/:id', usuario)
             .then(res => {
                 navigate('/home', { state: { usuario: res.data } });
             })
@@ -45,7 +47,10 @@ const EditarPerfil = () => {
                     <label className="form-label">E-Mail</label>
                     <input onChange={setEmail} className="form-control mb-2" placeholder="E-Mail"></input>
                     <label className="form-label">Contraseña</label>
-                    <input onChange={setPassword} type="password" className="form-control mb-2" placeholder="Contraseña"></input>
+                    <div className="inputPass">
+                        <input onChange={setPassword} type={showPassword ? "text" : "password"} className="form-control inputPassText" placeholder="Contraseña"></input>
+                        Mostrar:<input type="checkbox" onClick={() => setShowPassword(!showPassword)}></input>
+                    </div>
                 </section>
             </div>
             <button className="btn btn-primary mt-4" onClick={handleSubmit}>Guardar cambios</button>
