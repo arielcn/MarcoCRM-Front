@@ -21,7 +21,7 @@ const CargarDatosTarea = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault(); //Prevent page reload
-
+        console.log(userContext)
         let tarea = {
             Titulo: titulo,
             Nota: nota,
@@ -29,7 +29,7 @@ const CargarDatosTarea = () => {
             Fecha: fecha,
             fkUsuario: userContext.usuario.Id
         };
-        console.log(tarea);
+        console.log("tareaaaaa", tarea);
 
         axios.post("http://localhost:3001/tareas", tarea)
             .then(res => {
@@ -41,9 +41,8 @@ const CargarDatosTarea = () => {
                 console.log("ERROR!", err);
             });
     }
-    const handleEstadoChange = (e) => {
-        const selectedEstado = e.target.text; // Obtener el estado seleccionado
-        setEstado(selectedEstado); // Actualizar el estado seleccionado
+    const handleEstadoChange = (selectedEstado) => {
+        setEstado(selectedEstado);
     };
 
     return (
@@ -67,9 +66,10 @@ const CargarDatosTarea = () => {
                         <Dropdown.Item onClick={() => handleEstadoChange('Realizado')}>Realizado</Dropdown.Item>
                         <Dropdown.Item onClick={() => handleEstadoChange('Por realizar')}>Por realizar</Dropdown.Item>
                         <Dropdown.Item onClick={() => handleEstadoChange('Urgente')}>Urgente</Dropdown.Item>
+
                     </DropdownButton>
                     {estado && (
-                        <p>Seleccionado: {estado}</p>
+                        <p style={{ color: 'white' }}>Seleccionado: {estado}</p>
                     )}
                 </Form.Group>
 

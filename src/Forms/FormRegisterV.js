@@ -33,7 +33,7 @@ const FormRegisterV = (props) => {
             .then((response) => {
                 console.log(response);
                 setError('')
-                navigate('/codigo-empresa');
+                navigate('/');
             })
             .catch((err) => {
                 setError("Mail ya registrado");
@@ -48,34 +48,34 @@ const FormRegisterV = (props) => {
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Label className="fs-4 text-white"><b>Nombre</b></Form.Label>
-                        <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={(e => setNombre(e.target.value))} />
+                        <Form.Control type="text" placeholder="Nombre" required value={nombre} onChange={(e => setNombre(e.target.value))} />
                     </Form.Group>
 
                     <Form.Group as={Col} controlId="formGridPassword">
                         <Form.Label className="fs-4 text-white"><b>Apellido</b></Form.Label>
-                        <Form.Control type="text" placeholder="Apellido" value={apellido} onChange={(e => setApellido(e.target.value))} />
+                        <Form.Control type="text" placeholder="Apellido" required value={apellido} onChange={(e => setApellido(e.target.value))} />
                     </Form.Group>
                 </Row>
 
                 <Form.Group className="mb-3" controlId="formGridAddress1">
                     <Form.Label className="fs-4 text-white"><b>Email</b></Form.Label>
-                    <Form.Control type="email" placeholder="Tu E-Mail" value={mail} onChange={(e => setMail(e.target.value))} />
+                    <Form.Control type="email" placeholder="Tu E-Mail" required value={mail} onChange={(e => setMail(e.target.value))} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Contraseña</b></Form.Label>
-                    <Form.Control type="password" placeholder="Contraseña" value={contraseña} onChange={(e => setContraseña(e.target.value))} />
+                    <Form.Control type="password" placeholder="Contraseña" required value={contraseña} onChange={(e => setContraseña(e.target.value))} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
                     <Form.Label className="fs-4 text-white"><b>Teléfono</b></Form.Label>
-                    <Form.Control type="number" placeholder="Teléfono" value={telefono} onChange={(e => setTelefono(e.target.value))} />
+                    <Form.Control type="number" placeholder="Teléfono" required value={telefono} onChange={(e => setTelefono(e.target.value))} />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formGridAddress1">
-                    <Form.Label className="fs-4 text-white"><b>Código de la empresa asociada</b></Form.Label>
-                    <Form.Control type="text" placeholder="Código" value={codigoEmpresa} onChange={(e => setCodigoEmpresa(e.target.value))} />
-                </Form.Group>
+                <Form.Group className="mb-3" controlId="formGridAddress2">
+                        <Form.Label className="fs-4 text-white"><b>Código de la empresa asociada</b></Form.Label>
+                        <Form.Control type="text" placeholder="Código empresa" required value={codigoEmpresa} onChange={(e => setCodigoEmpresa(e.target.value))} />
+                    </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit">
                     Registrarse

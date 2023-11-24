@@ -3,19 +3,22 @@ import axios from 'axios';
 import './ListadoTareasEmpresa.css'
 import { Card, Modal, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import UsuarioContext from '../context/UsuarioContext';
+import { useContext } from 'react';
 
 const ListadoTareasEmpresa = () => {
     const navigate = useNavigate();
     const [tareasPorVendedor, setTareasPorVendedor] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [tareaSeleccionada, setTareaSeleccionada] = useState(null);
+    const userContext = useContext(UsuarioContext);
 
     useEffect(() => {
         fetchTareas();
     }, []);
 
     const fetchTareas = () => {
-        axios.get('http://localhost:3001/tareas') // Cambiar la URL según tu backend
+        axios.get(`http://localhost:3001/tareas/empresa/${userContext.usuario.fkEmpresa}`)
             .then(response => {
                 const tareasResponse = response.data;
                 const tareasAgrupadas = groupTareasPorVendedor(tareasResponse);
@@ -28,6 +31,7 @@ const ListadoTareasEmpresa = () => {
 
     const groupTareasPorVendedor = (tareas) => {
         // Agrupa las tareas por el campo fkUsuario
+        console.log("tareas de los vendedores", tareas)
         return tareas.reduce((tareasAgrupadas, tarea) => {
             const vendedorId = tarea.fkUsuario;
 

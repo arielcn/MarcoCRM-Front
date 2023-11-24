@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ListadoVendedor.css'
+import UsuarioContext from '../context/UsuarioContext';
+import { useContext } from 'react';
+
 
 const ListadoVendedor = () => {
 
     const [usuarios, setUsuarios] = useState([]);
     const [vendedorSeleccionado, setVendedorSeleccionado] = useState("");
-
+    const userContext = useContext(UsuarioContext);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/usuario/Microsoft')
+        axios.get('http://localhost:3001/usuario/fkEmpresa') //cambiar url
             .then((response) => {
                 console.log(response)
                 const datosUsuarios = response.data;

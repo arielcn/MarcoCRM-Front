@@ -6,12 +6,11 @@ import Home from "./Pages/Home";
 import ElegirUser from './Forms/ElegirUser';
 import FormRegisterD from './Forms/FormRegisterD';
 import FormRegisterV from './Forms/FormRegisterV';
-import CodigoEmpresa from './Forms/CodigoEmpresa';
 import ListadoCliente from './Listas/ListadoCliente';
 import ListadoVendedor from './Listas/ListadoVendedor';
 import ListadoTareasEmpresa from "./Listas/ListadoTareasEmpresa";
 import CargarDatosC from './Listas/CargarDatosC';
-import CargarDatosTarea from "./Listas/CargarDatosTarea";
+import CargarDatosTarea from "./Listas/CargarDatosTarea.js";
 import Agenda from "./Pages/Agenda";
 import CargarDatosReunion from "./Listas/CargarDatosReunion";
 import Reuniones from "./Pages/Reuniones";
@@ -27,6 +26,7 @@ function App() {
   const [usuario, setUsuario] = useState();
   const [datosAgenda, setDatosAgenda] = useState([]);
   const [datosReunion, setDatosReunion] = useState([]);
+  const [fkRol, setFkRol] = useState();
 
   useEffect(() => {
     console.log("MailUsuarioEnApp", mailUsuario);
@@ -50,7 +50,6 @@ function App() {
           <Route path="/registro-v" element={<FormRegisterV />}></Route>
           <Route path="/cargar-datos-c" element={<CargarDatosC />}></Route>
           <Route path="/cargar-datos-tarea" element={<CargarDatosTarea />}></Route>
-          <Route path="/codigo-empresa" element={<CodigoEmpresa />}></Route>
           <Route path="/agenda" element={<Agenda />}></Route>
           <Route path="/listado-cliente" element={<ListadoCliente />}></Route>
           <Route path="/listado-tareas-empresa" element={<ListadoTareasEmpresa />}></Route>
