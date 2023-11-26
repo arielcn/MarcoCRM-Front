@@ -8,11 +8,11 @@ import UsuarioContext from "../context/UsuarioContext";
 
 
 const CargarDatosAgenda = () => {
-    const[nombreCliente, setNombreCliente] = useState("");
-    const[apellidoCliente, setApellidoCliente] = useState("");
-    const[telefono, setTelefono] = useState("");
-    const[descripcion, setDescripcion] = useState("");
-    const[fecha, setFecha] = useState("");
+    const [nombreCliente, setNombreCliente] = useState("");
+    const [apellidoCliente, setApellidoCliente] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [fecha, setFecha] = useState("");
     const [error, setError] = useState('')
     const userContext = useContext(UsuarioContext);
     const navigate = useNavigate();
@@ -43,8 +43,7 @@ const CargarDatosAgenda = () => {
     }
 
     return (
-        
-            <div className="container">
+        <div className="container">
             <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail">

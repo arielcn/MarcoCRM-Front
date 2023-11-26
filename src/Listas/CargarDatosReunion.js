@@ -21,11 +21,12 @@ const CargarDatosReunion = () => {
     event.preventDefault(); //Prevent page reload
 
     let reunion = {
-      Titulo: titulo,
-      Formato: formato,
-      Fecha: fecha,
-      Imagen: imagen,
-      fkUsuario: userContext.usuario.Id
+        Titulo: titulo,
+        Formato: formato,
+        Hora: hora,
+        Fecha: fecha,
+        Imagen: imagen,
+        fkUsuario: userContext.usuario.Id
     };
     console.log(reunion);
 
@@ -146,11 +147,11 @@ const CargarDatosReunion = () => {
               </div>
               <div className='ms-4 col-5 text-white'>
                 <h3>Imagen - Subir Archivo</h3>
-                <input type='file' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIxNSsYpzYYOMud_qstvFIqdEU2TriY-uVOg&usqp=CAU'>
+                <input onChange={setImagen} type='file' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIxNSsYpzYYOMud_qstvFIqdEU2TriY-uVOg&usqp=CAU'>
                 </input>
               </div>
             </div>
-            <button className='btn btn-primary mt-5' type='submit'>Crear</button>
+            <button className='btn btn-primary mt-5' type='submit' onClick={handleSubmit}>Crear</button>
           </section>
         </div>
       </div>
