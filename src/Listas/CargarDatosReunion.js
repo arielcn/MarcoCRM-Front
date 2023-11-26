@@ -15,7 +15,7 @@ const CargarDatosReunion = () => {
   const [titulo, setTitulo] = useState("");
   const [imagen, setImagen] = useState("");
   const userContext = useContext(UsuarioContext);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault(); //Prevent page reload
@@ -23,6 +23,7 @@ const CargarDatosReunion = () => {
     let reunion = {
         Titulo: titulo,
         Formato: formato,
+        Hora: hora,
         Fecha: fecha,
         Imagen: imagen,
         fkUsuario: userContext.usuario.Id
@@ -69,7 +70,6 @@ const CargarDatosReunion = () => {
       <div class="container">
         <div class="row gx-5">
           <section class="col-4">
-
               <div class="p-3">
                 <div className="row text-center">
                   <div className="card mb-3 me-3 col-sm-5" id="cardFormato">
@@ -145,11 +145,11 @@ const CargarDatosReunion = () => {
               </div>
               <div className='ms-4 col-5 text-white'>
                 <h3>Imagen - Subir Archivo</h3>
-                <input type='file' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIxNSsYpzYYOMud_qstvFIqdEU2TriY-uVOg&usqp=CAU'>
+                <input onChange={setImagen} type='file' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIxNSsYpzYYOMud_qstvFIqdEU2TriY-uVOg&usqp=CAU'>
                 </input>
               </div>
             </div>
-            <button className='btn btn-primary mt-5' type='submit'>Crear</button>
+            <button className='btn btn-primary mt-5' type='submit' onClick={handleSubmit}>Crear</button>
           </section>
         </div>
       </div>

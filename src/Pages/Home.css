@@ -11,7 +11,7 @@
     border-radius: 5px;
     background-color: #f9f9f9;
 }
-.card {
+.cardHome {
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 15px;
@@ -21,18 +21,18 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card .card-title {
+.cardHome .card-title {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.card .card-text {
+.cardHome .card-text {
     color: #555;
     margin-bottom: 15px;
 }
 
-.card .btn {
+.cardHome .btn {
     width: 10%;
     margin-top: 10px;
     font-size: 14px; /* Tamaño de la fuente */

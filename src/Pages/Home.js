@@ -76,10 +76,10 @@ const Home = () => {
                     console.log("ID de la tarea:", tarea.Id);
                     console.log("Nuevo estado:", newEstado);
                     return tarea;
-                    
+
                 });
                 setTareas([...nuevasTareas]);
-    
+
                 // Clasificar las tarjetas en las columnas adecuadas
                 setTareasVerdes(nuevasTareas.filter(tarea => tarea.Estado === 'Realizado'));
                 setTareasAmarillas(nuevasTareas.filter(tarea => tarea.Estado === 'Por realizar'));
@@ -99,7 +99,7 @@ const Home = () => {
                     <div className="column">
                         <h3>Tareas Realizadas</h3>
                         {tareasVerdes.map((tarea) => (
-                            <Card key={tarea.Id} className="card">
+                            <Card key={tarea.Id} className="cardHome">
                                 <Card.Body>
                                     <Card.Title>{tarea.Titulo}</Card.Title>
                                     <Card.Text>{tarea.Nota}</Card.Text>
@@ -166,6 +166,12 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
+                <button onClick={() => { navigate('/cargar-datos-tarea') }} className="btn btn-secondary mt-5" type="submit">Crear tarea</button>
+                {userContext.usuario.fkRol === 1 && (
+                    <button onClick={() => navigate('/listado-tareas-empresa')} className="btn btn-primary" type="submit">
+                        Ver tareas de los vendedores
+                    </button>
+                )}
             </div>
 
             <Modal show={showModal} onHide={closeModal}>
@@ -187,15 +193,6 @@ const Home = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-            <button onClick={() => { navigate('/cargar-datos-tarea') }} className="btn btn-secondary" type="submit">Crear tarea</button>
-            {userContext.usuario.fkRol === 1 && (
-                <button onClick={() => navigate('/listado-tareas-empresa')} className="btn btn-primary" type="submit">
-                    Ver tareas de los vendedores
-                </button>
-            )}
-
-
         </>
     )
 }
