@@ -12,7 +12,7 @@ const ListadoCliente = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/clientes/Microsoft')
+        axios.get('http://localhost:3001/clientes/fkEmpresa')
             .then((response) => {
                 console.log(response)
                 const datosClientes = response.data;

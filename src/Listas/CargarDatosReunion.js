@@ -15,17 +15,17 @@ const CargarDatosReunion = () => {
   const [titulo, setTitulo] = useState("");
   const [imagen, setImagen] = useState("");
   const userContext = useContext(UsuarioContext);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault(); //Prevent page reload
 
     let reunion = {
-        Titulo: titulo,
-        Formato: formato,
-        Fecha: fecha,
-        Imagen: imagen,
-        fkUsuario: userContext.usuario.Id
+      Titulo: titulo,
+      Formato: formato,
+      Fecha: fecha,
+      Imagen: imagen,
+      fkUsuario: userContext.usuario.Id
     };
     console.log(reunion);
 
@@ -70,67 +70,68 @@ const CargarDatosReunion = () => {
         <div class="row gx-5">
           <section class="col-4">
 
-              <div class="p-3">
-                <div className="row text-center">
-                  <div className="card mb-3 me-3 col-sm-5" id="cardFormato">
-                    <img src="../../telefono.png" className="card-img-top" alt="" />
-                    <div className="card-body">
-                      <h5
-                        className={`card-title ${isCardSelected(1) ? "text-blue" : "text-original"}`}
-                        onClick={() => handleClickeado(1)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        Llamada
-                      </h5>
-                    </div>
+            <div class="p-3">
+              <div className="row text-center">
+                <div className="card mb-3 me-3 col-sm-5" id="cardFormato">
+                  <img src="../../telefono.png" className="card-img-top" alt="" />
+                  <div className="card-body">
+                    <h5
+                      className={`card-title ${isCardSelected(1) ? "text-blue" : "text-original"}`}
+                      onClick={() => handleClickeado(1)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Llamada
+                    </h5>
                   </div>
-                  <div className="card mb-3 col-sm-5" id="cardFormato">
-                    <img src="../../presencial.jpg" height="100%" className="card-img-top" alt="" />
-                    <div className="card-body">
-                      <h5
-                        className={`card-title ${isCardSelected(2) ? "text-blue" : "text-original"}`}
-                        onClick={() => handleClickeado(2)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        Presencial
-                      </h5>
-                    </div>
+                </div>
+                <div className="card mb-3 col-sm-5" id="cardFormato">
+                  <img src="../../presencial.jpg" height="100%" className="card-img-top" alt="" />
+                  <div className="card-body">
+                    <h5
+                      className={`card-title ${isCardSelected(2) ? "text-blue" : "text-original"}`}
+                      onClick={() => handleClickeado(2)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Presencial
+                    </h5>
                   </div>
-                  <div className="card mb-3 me-3 col-sm-5" id="cardFormato">
-                    <img src="../../whatsapp.png" className="card-img-top" alt="" />
-                    <div className="card-body">
-                      <h5
-                        className={`card-title ${isCardSelected(3) ? "text-blue" : "text-original"}`}
-                        onClick={() => handleClickeado(3)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        Whatsapp
-                      </h5>
-                    </div>
+                </div>
+                <div className="card mb-3 me-3 col-sm-5" id="cardFormato">
+                  <img src="../../whatsapp.png" className="card-img-top" alt="" />
+                  <div className="card-body">
+                    <h5
+                      className={`card-title ${isCardSelected(3) ? "text-blue" : "text-original"}`}
+                      onClick={() => handleClickeado(3)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Whatsapp
+                    </h5>
                   </div>
-                  <div className="card mb-3 col-sm-5" id="cardFormato">
-                    <img src="../../videollamada.png" className="card-img-top" alt="" />
-                    <div className="card-body">
-                      <h5
-                        className={`card-title ${isCardSelected(4) ? "text-blue" : "text-original"}`}
-                        onClick={() => handleClickeado(4)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        Videocall
-                      </h5>
-                    </div>
+                </div>
+                <div className="card mb-3 col-sm-5" id="cardFormato">
+                  <img src="../../videollamada.png" className="card-img-top" alt="" />
+                  <div className="card-body">
+                    <h5
+                      className={`card-title ${isCardSelected(4) ? "text-blue" : "text-original"}`}
+                      onClick={() => handleClickeado(4)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Videocall
+                    </h5>
                   </div>
+                </div>
 
-                  <div className="row fechaHora">
-                    <img src='../../reloj.png' alt=''></img>
-                    <div>
-                      <h3>Fecha y hora</h3>
-                      <label>Fecha: <input type='date' onChange={setFecha}></input></label>
-                      <label>Hora: <input type='time' onChange={setHora}></input></label>
-                    </div>
+                <div className="row fechaHora">
+                  <img src='../../reloj.png' alt=''></img>
+                  <div>
+                    <h3>Fecha y hora</h3>
+                    <label>Fecha: <input type='date' onChange={(e) => setFecha(e.target.value)}></input></label>
+                    <label>Hora: <input type='time' onChange={(e) => setHora(e.target.value)}></input></label>
+
                   </div>
                 </div>
               </div>
+            </div>
           </section>
 
           <section class="col-8">

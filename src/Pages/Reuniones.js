@@ -19,9 +19,10 @@ const Reuniones = () => {
 
     axios.get(`http://localhost:3001/reuniones/${usuarioId}`)
       .then((response) => {
-        const r = response.data;
-        setDatosReunion([...r]);
-        console.log("datos reunion:", r);
+        console.log("reuniones", response.data);
+        const datosReunion = response.data || [];
+        setDatosReunion(datosReunion);
+        console.log("reuniones agendadas:", datosReunion);
       })
       .catch((error) => {
         console.error("Error al obtener reunion:", error);

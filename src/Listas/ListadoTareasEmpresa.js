@@ -17,17 +17,18 @@ const ListadoTareasEmpresa = () => {
         fetchTareas();
     }, []);
 
-    const fetchTareas = () => {
-        axios.get(`http://localhost:3001/tareas/empresa/${userContext.usuario.fkEmpresa}`)
-            .then(response => {
-                const tareasResponse = response.data;
-                const tareasAgrupadas = groupTareasPorVendedor(tareasResponse);
-                setTareasPorVendedor(tareasAgrupadas);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    };
+   const fetchTareas = () => {
+    axios.get(`http://localhost:3001/tareas/empresa/${userContext.usuario.fkEmpresa}`)
+        .then(response => {
+            const tareasResponse = response.data;
+            const tareasAgrupadas = groupTareasPorVendedor(tareasResponse);
+            setTareasPorVendedor(tareasAgrupadas);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+};
+
 
     const groupTareasPorVendedor = (tareas) => {
         // Agrupa las tareas por el campo fkUsuario
