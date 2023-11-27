@@ -12,9 +12,8 @@ const ListadoVendedor = () => {
     const userContext = useContext(UsuarioContext);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/usuario/fkEmpresa') //cambiar url
+        axios.get(`http://localhost:3001/usuario/getByEmpresa/${userContext.usuario.fkEmpresa}`)
             .then((response) => {
-                console.log(response)
                 const datosUsuarios = response.data;
                 setUsuarios(datosUsuarios);
                 console.log(datosUsuarios)

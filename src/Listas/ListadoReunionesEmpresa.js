@@ -60,7 +60,7 @@ const ListadoReunionesEmpresa = () => {
             <div className="container text-center">
                 {Object.keys(reunionesPorVendedor).map((vendedorId) => (
                     <div key={vendedorId}>
-                        <h3>reuniones de Vendedor {vendedorId}</h3>
+                        <h3 className='mt-3 text-white'>Reuniones de Vendedor {vendedorId}</h3>
                         {reunionesPorVendedor[vendedorId].map((reunion) => (
                             <Card key={reunion.Id} className="card">
                                 <Card.Body>

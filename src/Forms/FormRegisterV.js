@@ -13,6 +13,7 @@ const FormRegisterV = (props) => {
     const [mail, setMail] = useState("");
     const [telefono, setTelefono] = useState("");
     const [codigoEmpresa, setCodigoEmpresa] = useState("");
+    const [cuit, setCuit] = useState('');
     const [error, setError] = useState('')
     const navigate = useNavigate();
 
@@ -27,9 +28,10 @@ const FormRegisterV = (props) => {
             Telefono: telefono,
             CodigoEmpresa: codigoEmpresa,
             fkRol: 2,
+            Cuit: cuit,
         };
 
-        axios.post("http://localhost:3001/usuario", {usuario})
+        axios.post("http://localhost:3001/usuario", { usuario })
             .then((response) => {
                 console.log(response);
                 setError('')
@@ -73,9 +75,14 @@ const FormRegisterV = (props) => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formGridAddress2">
-                        <Form.Label className="fs-4 text-white"><b>Código de la empresa asociada</b></Form.Label>
-                        <Form.Control type="text" placeholder="Código empresa" required value={codigoEmpresa} onChange={(e => setCodigoEmpresa(e.target.value))} />
-                    </Form.Group>
+                    <Form.Label className="fs-4 text-white"><b>CUIT</b></Form.Label>
+                    <Form.Control type="text" placeholder="Tu CUIT" required value={cuit} onChange={(e => setCuit(e.target.value))} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formGridAddress2">
+                    <Form.Label className="fs-4 text-white"><b>Código de la empresa asociada</b></Form.Label>
+                    <Form.Control type="text" placeholder="Código empresa" required value={codigoEmpresa} onChange={(e => setCodigoEmpresa(e.target.value))} />
+                </Form.Group>                
 
                 <Button variant="primary" size="lg" type="submit">
                     Registrarse

@@ -48,7 +48,7 @@ const EditarPerfil = () => {
         }
         const usuarioId = userContext.usuario.Id
 
-        axios.post(`http://localhost:3001/usuario/${usuarioId}`, usuario)
+        axios.put(`http://localhost:3001/usuario/${usuarioId}`, usuario)
             .then(res => {
                 console.log("idUSuario", usuarioId)
                 navigate('/home', { state: { usuario: res.data } });

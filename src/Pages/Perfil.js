@@ -22,9 +22,10 @@ const Perfil = () => {
     return (
         <div class="container text-white">
                 <h1 className="mt-5">Mi Perfil</h1>
-                <h2>{usuario.Nombre} {usuario.Apellido}</h2>
-                <h3>{usuario.Cuit}</h3>
+                <h2>Nombre: {usuario.Nombre} {usuario.Apellido}</h2>
+                <h3>CUIT: {usuario.Cuit}</h3>
                 <button onClick={() => {navigate('/editar-perfil')}} className="mt-4 btn btn-warning">Editar Perfil</button>
+                <button onClick={() => {navigate('/')}} className='ms-3 mt-4 btn btn-danger'>Cerrar Sesión</button>
         </div>
     );
 };

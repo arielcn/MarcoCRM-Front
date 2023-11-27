@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavbarHome from './Navbar';
-import { Card, Col, Modal, Row } from 'react-bootstrap';
+import { Card, Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import UsuarioContext from '../context/UsuarioContext';
@@ -32,7 +32,6 @@ const Home = () => {
         axios.get(`http://localhost:3001/tareas/usuario/${usuarioId}`)
             .then(response => {
                 const tareasResponse = response.data;
-                console.log("tareas", response.data)
                 setTareas([...tareasResponse]);
             })
             .catch(error => {
@@ -52,7 +51,6 @@ const Home = () => {
     const fetchTareaInfo = (id) => {
         axios.get(`http://localhost:3001/tareas/tarea/${id}`)
             .then(response => {
-                console.log(response.data);
                 navigate(`/tarea/${id}`);
             })
             .catch(error => {
@@ -70,17 +68,13 @@ const Home = () => {
     };
 
     const cambiarEstadoTarea = (tarea, newEstado) => {
-        console.log("TAREA, CAMBIARESTADO", tarea);
         axios.put(`http://localhost:3001/tareas/${tarea.Id}`, { ...tarea, "Estado": newEstado })
             .then(response => {
                 const tareaActualizada = response.data;
-                console.log("TareaActualizada", tareaActualizada);
                 const nuevasTareas = tareas.map(tarea => {
                     if (tarea.Id === tareaActualizada.Id) {
                         return tareaActualizada;
                     }
-                    console.log("ID de la tarea:", tarea.Id);
-                    console.log("Nuevo estado:", newEstado);
                     return tarea;
 
                 });

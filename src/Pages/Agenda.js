@@ -1,15 +1,12 @@
-import { Navbar, Table } from "react-bootstrap";
-import { useState, useContext } from "react";
+import { Table } from "react-bootstrap";
+import React, { useState, useContext, useEffect } from "react";
 import UsuarioContext from "../context/UsuarioContext";
 import { Link } from "react-router-dom";
 import NavbarHome from "./Navbar";
-import React from "react";
-import { useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
 function Agenda() {
-  const [notaSeleccionada, setNotaSeleccionada] = useState("");
+  const navigate = useNavigate();
   const [datosAgenda, setDatosAgenda] = useState([]);
   const { state } = useLocation();
   const userContext = useContext(UsuarioContext);
@@ -34,7 +31,7 @@ function Agenda() {
 
   const eliminarNota = (agendaId) => {
     axios.delete(`http://localhost:3001/agenda/${agendaId}`)
-      .then(response => {
+      .then((response) => {
         setDatosAgenda(datosAgenda.filter((agenda) => agenda.Id !== agendaId));
       })
       .catch(error => {
@@ -42,9 +39,6 @@ function Agenda() {
       });
   };
 
-  const seleccionarNota = (index) => {
-    setNotaSeleccionada(index);
-  };
 
   return (
     <>
@@ -90,6 +84,11 @@ function Agenda() {
             Crear
           </Link>
         </div>
+        {userContext.usuario.fkRol === 1 && (
+          <button onClick={() => navigate('/listado-agendas-empresa')} className="btn btn-primary" type="submit">
+            Ver agenda de los vendedores
+          </button>
+        )}
       </div>
     </>
   );

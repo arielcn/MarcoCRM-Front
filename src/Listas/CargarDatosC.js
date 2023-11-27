@@ -25,7 +25,7 @@ const CargarDatosC = () => {
             Apellido: apellido,
             Mail: mail,
             Telefono: telefono,
-            fkUsuario: userContext.usuario.Id
+            fkUsuario: userContext.usuario.Id,
         };
 
         axios.post("http://localhost:3001/clientes", {cliente})

@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ListadoAgendasEmpresa.css'
 import { Card, Modal, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import UsuarioContext from '../context/UsuarioContext';
 import { useContext } from 'react';
 
 const ListadoAgendasEmpresa = () => {
-    const navigate = useNavigate();
     const [agendasPorVendedor, setAgendasPorVendedor] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [agendaSeleccionada, setAgendaSeleccionada] = useState(null);
@@ -18,7 +16,7 @@ const ListadoAgendasEmpresa = () => {
     }, []);
 
    const fetchagendas = () => {
-    axios.get(`http://localhost:3001/agendas/empresa/${userContext.usuario.fkEmpresa}`)
+    axios.get(`http://localhost:3001/agenda/empresa/${userContext.usuario.fkEmpresa}`)
         .then(response => {
             const agendasResponse = response.data;
             const agendasAgrupadas = groupAgendasPorVendedor(agendasResponse);
@@ -59,7 +57,7 @@ const ListadoAgendasEmpresa = () => {
             <div className="container text-center">
                 {Object.keys(agendasPorVendedor).map((vendedorId) => (
                     <div key={vendedorId}>
-                        <h3>agendas de Vendedor {vendedorId}</h3>
+                        <h3 className='text-white mt-4'>Agenda del Vendedor {vendedorId}</h3>
                         {agendasPorVendedor[vendedorId].map((agenda) => (
                             <Card key={agenda.Id} className="card">
                                 <Card.Body>

@@ -25,7 +25,6 @@ const Reuniones = () => {
         console.log("reuniones", response.data);
         const datosReunion = response.data || [];
         setDatosReunion(datosReunion);
-        console.log("reuniones agendadas:", datosReunion);
       })
       .catch((error) => {
         console.error("Error al obtener reunion:", error);
@@ -72,7 +71,7 @@ const Reuniones = () => {
                     {new Date(reunion.Fecha).toLocaleDateString()}
                   </td>
                   <td>
-                    <img src={reunion.Imagen}></img>
+                    <img src={reunion.Imagen} alt='a'></img>
                   </td>
                   <td>
                     <button className="btn btn-danger" onClick={() => eliminarReunion(reunion.Id)}>
