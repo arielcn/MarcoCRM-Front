@@ -32,7 +32,8 @@ const CargarDatosTarea = () => {
         console.log("tareaaaaa", tarea);
 
         axios.post("http://localhost:3001/tareas", tarea)
-            .then(res => {
+            .then(res => {  
+                userContext.setRecargarTareas(!userContext.recargarTareas)
                 setError('')
                 navigate("/home")
             })
@@ -51,7 +52,7 @@ const CargarDatosTarea = () => {
             <Form onSubmit={handleSubmit}>
                 <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail">
-                        <Form.Label className="fs-4 text-white"><b>Titulo de la tarea</b></Form.Label>
+                        <Form.Label className="fs-4 text-white"><b>Título de la tarea</b></Form.Label>
                         <Form.Control type="text" placeholder="Titulo" required value={titulo} onChange={(e => setTitulo(e.target.value))} />
                     </Form.Group>
 

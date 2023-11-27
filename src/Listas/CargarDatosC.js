@@ -25,11 +25,12 @@ const CargarDatosC = () => {
             Apellido: apellido,
             Mail: mail,
             Telefono: telefono,
-            MailUsuario: userContext.mailUsuario
+            fkUsuario: userContext.usuario.Id
         };
 
         axios.post("http://localhost:3001/clientes", {cliente})
             .then(res => {
+                userContext.setRecargarClientes(!userContext.recargarClientes)
                 setError('')
                 navigate("/listado-cliente")
             })

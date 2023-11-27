@@ -15,6 +15,8 @@ import Agenda from "./Pages/Agenda";
 import CargarDatosReunion from "./Listas/CargarDatosReunion";
 import Reuniones from "./Pages/Reuniones";
 import CargarDatosAgenda from "./Listas/CargarDatosAgenda";
+import ListadoReunionesEmpresa from "./Listas/ListadoReunionesEmpresa.js";
+import ListadoAgendasEmpresa from "./Listas/ListadoAgendasEmpresa.js";
 import ForgotPwd from "./Forms/ForgotPwd";
 import EditarPerfil from "./Forms/EditarPerfil";
 import Perfil from "./Pages/Perfil";
@@ -26,6 +28,8 @@ function App() {
   const [usuario, setUsuario] = useState();
   const [datosAgenda, setDatosAgenda] = useState([]);
   const [datosReunion, setDatosReunion] = useState([]);
+  const [recargarTareas, setRecargarTareas] = useState(false);
+  const [recargarClientes, setRecargarClientes] = useState(false);
   const [fkRol, setFkRol] = useState();
 
   useEffect(() => {
@@ -39,7 +43,7 @@ function App() {
  
   return (
     <BrowserRouter>
-      <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario, usuario, setUsuario, datosAgenda, setDatosAgenda, datosReunion, setDatosReunion}}>
+      <UsuarioContext.Provider value ={{mailUsuario, setMailUsuario, usuario, setUsuario, datosAgenda, setDatosAgenda, datosReunion, setDatosReunion, recargarTareas, setRecargarTareas, recargarClientes, setRecargarClientes}}>
       <Routes>
           <Route index element={<FormLogin />}></Route>
         <Route path="/" element={<Layout />}>
@@ -52,8 +56,10 @@ function App() {
           <Route path="/cargar-datos-tarea" element={<CargarDatosTarea />}></Route>
           <Route path="/agenda" element={<Agenda />}></Route>
           <Route path="/listado-cliente" element={<ListadoCliente />}></Route>
+          <Route path="/listado-reuniones-empresa" element={<ListadoReunionesEmpresa />}></Route>
           <Route path="/listado-tareas-empresa" element={<ListadoTareasEmpresa />}></Route>
           <Route path="/listado-vendedor" element={<ListadoVendedor />}></Route>
+          <Route path="/listado-agendas-empresa" element={<ListadoAgendasEmpresa />}></Route>
           <Route path="/reuniones" element={<Reuniones />}></Route>
           <Route path="/cargar-datos-agenda" element={<CargarDatosAgenda />}></Route>
           <Route path="/cargar-datos-reunion" element={<CargarDatosReunion />}></Route>

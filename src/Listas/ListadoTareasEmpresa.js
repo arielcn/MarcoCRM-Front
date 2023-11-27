@@ -20,6 +20,7 @@ const ListadoTareasEmpresa = () => {
    const fetchTareas = () => {
     axios.get(`http://localhost:3001/tareas/empresa/${userContext.usuario.fkEmpresa}`)
         .then(response => {
+            console.log("tumama", response)
             const tareasResponse = response.data;
             const tareasAgrupadas = groupTareasPorVendedor(tareasResponse);
             setTareasPorVendedor(tareasAgrupadas);
@@ -94,10 +95,6 @@ const ListadoTareasEmpresa = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
-            <button onClick={() => navigate('/cargar-datos-tarea')} className="btn btn-secondary" type="submit">
-                Crear tarea
-            </button>
         </>
     );
 };

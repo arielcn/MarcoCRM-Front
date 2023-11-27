@@ -10,24 +10,27 @@ import { useLocation } from "react-router-dom";
 
 function Agenda() {
   const [notaSeleccionada, setNotaSeleccionada] = useState("");
-  const { usuario, datosAgenda, setDatosAgenda } = useContext(UsuarioContext);
+  const [datosAgenda, setDatosAgenda] = useState([]);
   const { state } = useLocation();
+  const userContext = useContext(UsuarioContext);
+
 
   useEffect(() => {
-    console.log(usuario);
-    const usuarioId = usuario.Id;
+    fetchAgendas(userContext.usuario.Id);
+  }, []);
 
-    axios.get(`http://localhost:3001/agenda/${usuarioId}`)
+  const fetchAgendas = (usuarioId) => {
+    axios.get(`http://localhost:3001/agenda/usuario/${usuarioId}`)
       .then((response) => {
         console.log("agenda", response.data);
         const datosAgenda = response.data;
         setDatosAgenda(datosAgenda);
-        console.log("notas agendadas:", datosAgenda);
+        console.log("agendas:", datosAgenda);
       })
       .catch((error) => {
-        console.error("Error al obtener notas agendadas:", error);
+        console.error("Error al obtener agendas:", error);
       });
-  }, []);
+  };
 
   const eliminarNota = (agendaId) => {
     axios.delete(`http://localhost:3001/agenda/${agendaId}`)

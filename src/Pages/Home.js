@@ -23,19 +23,16 @@ const Home = () => {
         fetchTareas(userContext.usuario.Id);
     }, []);
 
+
     useEffect(() => {
-        console.log("JOEMAMA", tareas);
+        fetchTareas(userContext.usuario.Id);
+    }, [userContext.recargarTareas]);
 
-        setTareasVerdes([...tareas.filter(tarea => tarea.Estado === 'Realizado')]);
-        setTareasAmarillas([...tareas.filter(tarea => tarea.Estado === 'Por realizar')]);
-        setTareasRojas([...tareas.filter(tarea => tarea.Estado === 'Urgente')]);
-    }, [tareas]);
-
-    const fetchTareas = (idUsuario) => {
-        axios.get(`http://localhost:3001/tareas/${idUsuario}`)
+    const fetchTareas = (usuarioId) => {
+        axios.get(`http://localhost:3001/tareas/usuario/${usuarioId}`)
             .then(response => {
                 const tareasResponse = response.data;
-                console.log("sus", response.data)
+                console.log("tareas", response.data)
                 setTareas([...tareasResponse]);
             })
             .catch(error => {
@@ -43,8 +40,17 @@ const Home = () => {
             });
     };
 
+
+    useEffect(() => {
+        setTareasVerdes([...tareas.filter(tarea => tarea.Estado === 'Realizado')]);
+        setTareasAmarillas([...tareas.filter(tarea => tarea.Estado === 'Por realizar')]);
+        setTareasRojas([...tareas.filter(tarea => tarea.Estado === 'Urgente')]);
+    }, [tareas]);
+
+
+
     const fetchTareaInfo = (id) => {
-        axios.get(`http://localhost:3001/tareas/${id}`)
+        axios.get(`http://localhost:3001/tareas/tarea/${id}`)
             .then(response => {
                 console.log(response.data);
                 navigate(`/tarea/${id}`);
@@ -103,10 +109,10 @@ const Home = () => {
                                 <Card.Body>
                                     <Card.Title>{tarea.Titulo}</Card.Title>
                                     <Card.Text>{tarea.Nota}</Card.Text>
-                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea, 'Realizado')}>
+                                    <Button variant="success" onClick={() => cambiarEstadoTarea(tarea, 'Realizado')} >
                                         Realizado
                                     </Button>
-                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea, 'Por realizar')}>
+                                    <Button variant="warning" onClick={() => cambiarEstadoTarea(tarea, 'Por realizar')} >
                                         Por Realizar
                                     </Button>
                                     <Button variant="danger" onClick={() => cambiarEstadoTarea(tarea, 'Urgente')}>
@@ -168,7 +174,7 @@ const Home = () => {
                 </div>
                 <button onClick={() => { navigate('/cargar-datos-tarea') }} className="btn btn-secondary mt-5" type="submit">Crear tarea</button>
                 {userContext.usuario.fkRol === 1 && (
-                    <button onClick={() => navigate('/listado-tareas-empresa')} className="btn btn-primary" type="submit">
+                    <button onClick={() => navigate('/listado-tareas-empresa')} className="btn btn-primary"  style={{ margin: '10px', marginTop: '58px' }} type="submit">
                         Ver tareas de los vendedores
                     </button>
                 )}

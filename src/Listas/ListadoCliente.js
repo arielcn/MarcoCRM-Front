@@ -4,15 +4,21 @@ import './ListadoCliente.css'
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
 import Navbarr from '../Pages/Navbar';
+import UsuarioContext from '../context/UsuarioContext';
+import { useContext } from 'react';
 
 const ListadoCliente = () => {
     const [clientes, setClientes] = useState([]);
     const [clienteSeleccionado, setClienteSeleccionado] = useState("");
     const navigate = useNavigate();
-
+    const userContext = useContext(UsuarioContext);
 
     useEffect(() => {
-        axios.get('http://localhost:3001/clientes/fkEmpresa')
+        fetchClientes();
+    }, []);
+
+    const fetchClientes = () => {
+        axios.get(`http://localhost:3001/clientes/usuario/${userContext.usuario.Id}`)
             .then((response) => {
                 console.log(response)
                 const datosClientes = response.data;
@@ -22,8 +28,7 @@ const ListadoCliente = () => {
             .catch((error) => {
                 console.error("Error al obtener clientes:", error);
             });
-
-    }, []);
+    };
 
     const seleccionarCliente = (index) => {
         setClienteSeleccionado(index);

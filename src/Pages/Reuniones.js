@@ -1,21 +1,24 @@
 import NavbarHome from './Navbar';
-import React, { useState } from "react";
+import React from "react";
 import axios from 'axios';
-import { Table, Navbar } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UsuarioContext from "../context/UsuarioContext";
 import { useEffect, useContext } from "react";
-
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Reuniones = () => {
 
   const { usuario, datosReunion, setDatosReunion } = useContext(UsuarioContext);
+  const userContext = useContext(UsuarioContext);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     console.log(usuario);
-    const usuarioId = usuario.Id;
+    const usuarioId = userContext.usuario.Id;
 
     axios.get(`http://localhost:3001/reuniones/${usuarioId}`)
       .then((response) => {
@@ -56,27 +59,27 @@ const Reuniones = () => {
             </tr>
           </thead>
           <tbody>
-            {datosReunion.length > 0 ? 
+            {datosReunion.length > 0 ?
               (datosReunion.map((reunion, index) => (
-              <tr key={index}>
-                <td>
-                  {reunion.Titulo}
-                </td>
-                <td>
-                  {reunion.Formato}
-                </td>
-                <td>
-                  {new Date(reunion.FechaYHora).toLocaleDateString()}
-                </td>
-                <td>
-                  <img src={reunion.Imagen}></img>
-                </td>
-                <td>
-                  <button className="btn btn-danger" onClick={() => eliminarReunion(reunion.Id)}>
-                    Eliminar
-                  </button>
-                </td>
-              </tr>)))
+                <tr key={index}>
+                  <td>
+                    {reunion.Titulo}
+                  </td>
+                  <td>
+                    {reunion.Formato}
+                  </td>
+                  <td>
+                    {new Date(reunion.Fecha).toLocaleDateString()}
+                  </td>
+                  <td>
+                    <img src={reunion.Imagen}></img>
+                  </td>
+                  <td>
+                    <button className="btn btn-danger" onClick={() => eliminarReunion(reunion.Id)}>
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>)))
               : <></>
             }
           </tbody>
@@ -86,6 +89,11 @@ const Reuniones = () => {
             Crear
           </Link>
         </div>
+        {userContext.usuario.fkRol === 1 && (
+          <button onClick={() => navigate('/listado-reuniones-empresa')} className="btn btn-primary" type="submit">
+            Ver reuniones de los vendedores
+          </button>
+        )}
       </div>
     </>
   );

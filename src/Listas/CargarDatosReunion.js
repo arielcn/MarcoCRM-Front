@@ -14,6 +14,7 @@ const CargarDatosReunion = () => {
   const [formato, setFormato] = useState("");
   const [titulo, setTitulo] = useState("");
   const [imagen, setImagen] = useState("");
+  const [error, setError] = useState('')
   const userContext = useContext(UsuarioContext);
   const navigate = useNavigate();
 
@@ -23,20 +24,19 @@ const CargarDatosReunion = () => {
     let reunion = {
         Titulo: titulo,
         Formato: formato,
-        Hora: hora,
         Fecha: fecha,
         Imagen: imagen,
         fkUsuario: userContext.usuario.Id
     };
     console.log(reunion);
 
-    axios.post("http://localhost:3001/reuniones", { reunion })
+    axios.post("http://localhost:3001/reuniones",  reunion )
       .then((response) => {
-        console.log(response.status, response.data.token);
-        //navigate("/");
+        setError('')
+        navigate("/reuniones");
       })
-      .catch((err) => {
-        console.log("ERROR!", err);
+      .catch((error) => {
+        console.log("ERROR!", error);
       });
   }
 
@@ -125,10 +125,8 @@ const CargarDatosReunion = () => {
                 <div className="row fechaHora">
                   <img src='../../reloj.png' alt=''></img>
                   <div>
-                    <h3>Fecha y hora</h3>
+                    <h3>Fecha</h3>
                     <label>Fecha: <input type='date' onChange={(e) => setFecha(e.target.value)}></input></label>
-                    <label>Hora: <input type='time' onChange={(e) => setHora(e.target.value)}></input></label>
-
                   </div>
                 </div>
               </div>
@@ -138,7 +136,7 @@ const CargarDatosReunion = () => {
           <section class="col-8">
             <div class="p-3 text-white">
               <h1>Título de la reunion</h1>
-              <input type='text' placeholder='titulo' onChange={setTitulo}></input>
+              <input type='text' placeholder='Titulo' onChange={(e) => setTitulo(e.target.value)}></input>
             </div>
             <div className='row'>
               <div className='col-6 notas text-white'>
@@ -152,6 +150,7 @@ const CargarDatosReunion = () => {
               </div>
             </div>
             <button className='btn btn-primary mt-5' type='submit' onClick={handleSubmit}>Crear</button>
+            <button onClick={() => { navigate('/home') }} className="btn btn-danger" style={{ marginLeft: '20px', marginTop: '50px'}} type="submit">Cancelar</button>
           </section>
         </div>
       </div>
